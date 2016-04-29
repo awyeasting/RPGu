@@ -1,14 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/behindMainArea">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Activities"
-        android:textSize="40dp"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:layout_centerInParent="true"/>
-</LinearLayout>
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dailies"
+                android:textSize="20dp"
+                android:textColor="#FFFFFF"
+                android:background="@color/dailiesColor"
+                android:gravity="center"/>
+            <ListView
+                android:id="@+id/dailies_list_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF">
+            </ListView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Weeklies"
+                android:textSize="20dp"
+                android:textColor="#FFFFFF"
+                android:background="@color/weekliesColor"
+                android:gravity="center"/>
+            <ListView
+                android:id="@+id/weeklies_list_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF">
+            </ListView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Monthlies"
+                android:textSize="20dp"
+                android:textColor="#FFFFFF"
+                android:background="@color/monthliesColor"
+                android:gravity="center"/>
+            <ListView
+                android:id="@+id/monthlies_list_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF">
+            </ListView>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
