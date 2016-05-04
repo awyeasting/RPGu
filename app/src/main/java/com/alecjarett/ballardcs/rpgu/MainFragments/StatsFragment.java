@@ -37,7 +37,12 @@ public class StatsFragment extends Fragment{
         View root = inflater.inflate(R.layout.fragment_stats, container, false);
 
         ArrayList<Skill> skills = new ArrayList<Skill>();
-            skills.add(new Skill("Wisdom",9001));
+            skills.add(new Skill("Balance",110));
+            skills.add(new Skill("Cooking",310));
+            skills.add(new Skill("Endurance",510));
+            skills.add(new Skill("Flexibility",710));
+            skills.add(new Skill("Strength", 910));
+            skills.add(new Skill("Wisdom",1010));
 
         skillsAdapter = new SkillsListAdapter(getActivity(), skills);
         //TODO: Put skill information into adapter and develop skill information hierarchy

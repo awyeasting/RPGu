@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 /**
@@ -20,12 +22,41 @@ public class SkillsListAdapter extends ArrayAdapter<Skill> {
 
     public View getView(int position, View convertView, ViewGroup parent){
         Skill skill = getItem(position);
+
+        int currentXP = skill.getXP();
+        int skillLevel = ExperienceFunctions.getLevel(currentXP);
+        int nextLevelXP = ExperienceFunctions.getExperience(skillLevel + 1);
+        int levelBaseXP = ExperienceFunctions.getExperience(skillLevel);
+
         View root = LayoutInflater.from(getContext()).inflate(R.layout.list_item_skill, parent, false);
 
+        //Set the skill name text
         TextView skillLabel = (TextView) root.findViewById(R.id.skill_name);
         skillLabel.setText(skill.getSkillLabel());
 
-        //TODO: Add more of the same
+        //Set the level number text
+        TextView levelLabel = (TextView) root.findViewById(R.id.level_signifier_text);
+        levelLabel.setText("Level: " + skillLevel);
+
+        //Set the exp to next level text
+        TextView expToNextLevel = (TextView) root.findViewById(R.id.experience_to_next_level);
+        expToNextLevel.setText(nextLevelXP-currentXP + " xp to go");
+
+        //Set current level text
+        TextView currentLevel = (TextView) root.findViewById(R.id.current_level_progress);
+        currentLevel.setText(skillLevel+"");
+
+        //Set next level text
+        TextView nextLevel = (TextView) root.findViewById(R.id.next_level_progress);
+        nextLevel.setText((skillLevel+1)+"");
+
+        //TODO: Get Progress Bar Working
+        View progressBarForeground = root.findViewById(R.id.progress_bar_foreground);
+
+        double levelProgress = (double)(currentXP-levelBaseXP)/(double)(nextLevelXP-levelBaseXP);
+
+        progressBarForeground.setMinimumWidth((int)(levelProgress*200));
+        //TODO: Get Progress Bar Working
         return root;
     }
 }

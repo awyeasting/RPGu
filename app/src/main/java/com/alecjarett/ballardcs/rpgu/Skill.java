@@ -14,4 +14,5 @@ public class Skill {
 
     public String getSkillLabel() { return skillLabel; }
     public int getXP() { return xp; }
+
 }
