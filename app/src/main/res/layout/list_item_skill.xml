@@ -49,20 +49,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10"/>
-            <RelativeLayout
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/progressBarBackgroundColor"/>
-                <View
-                    android:id="@+id/progress_bar_foreground"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/progressBarForegroundColor"/>
-            </RelativeLayout>
+            <ProgressBar
+                android:id="@+id/skill_progress_bar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:progressTint="@color/progressBarForegroundColor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:indeterminate="false"
+                android:minWidth="100dp"
+                android:progress="20"
+                android:layout_weight="1" />
             <TextView
                 android:paddingLeft="10dp"
                 android:id="@+id/next_level_progress"

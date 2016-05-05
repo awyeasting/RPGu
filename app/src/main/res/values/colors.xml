@@ -15,6 +15,5 @@
     <color name="weekliesColor">#0099FF</color>
     <color name="monthliesColor">#7700BB</color>
 
-    <color name="progressBarBackgroundColor">#BBBBBB</color>
-    <color name="progressBarForegroundColor">#2277FF</color>
+    <color name="progressBarForegroundColor">#0066FF</color>
 </resources>

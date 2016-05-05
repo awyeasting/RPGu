@@ -1,5 +1,6 @@
 package com.alecjarett.ballardcs.rpgu;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -7,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -65,11 +69,12 @@ public class SkillsListAdapter extends ArrayAdapter<Skill> {
         nextLevel.setText((skillLevel+1)+"");
 
         //TODO: Get Progress Bar Working
-        View progressBarForeground = root.findViewById(R.id.progress_bar_foreground);
+        ProgressBar progressBar = (ProgressBar)root.findViewById(R.id.skill_progress_bar);
 
         double levelProgress = (double)(currentXP-levelBaseXP)/(double)(nextLevelXP-levelBaseXP);
 
-        progressBarForeground.setMinimumWidth((int)(levelProgress*200));
+        progressBar.setProgress((int)(levelProgress*100));
+
         //TODO: Get Progress Bar Working
         return root;
     }
