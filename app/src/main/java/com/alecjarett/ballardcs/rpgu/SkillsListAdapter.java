@@ -1,10 +1,12 @@
 package com.alecjarett.ballardcs.rpgu;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -29,6 +31,18 @@ public class SkillsListAdapter extends ArrayAdapter<Skill> {
         int levelBaseXP = ExperienceFunctions.getExperience(skillLevel);
 
         View root = LayoutInflater.from(getContext()).inflate(R.layout.list_item_skill, parent, false);
+
+        //Load image icon based upon the skill name (lowercase) + "_icon"
+        ImageView skillIcon = (ImageView) root.findViewById(R.id.skill_icon_image);
+        try {
+            skillIcon.setImageResource(this.getContext()
+                    .getResources()
+                    .getIdentifier(skill.getSkillLabel().toLowerCase()+"_icon",
+                            "drawable",
+                            this.getContext().getPackageName()));
+        }catch (Exception e){
+            Log.e("hi,","problem loading skill image");
+        }
 
         //Set the skill name text
         TextView skillLabel = (TextView) root.findViewById(R.id.skill_name);
