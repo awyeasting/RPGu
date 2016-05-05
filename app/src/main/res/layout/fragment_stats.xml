@@ -7,10 +7,13 @@
 
     <ListView
         android:id="@+id/skills_list_view"
-        android:layout_margin="10dp"
+        android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/mainAreaColor">
+        android:divider="@android:color/transparent"
+        android:dividerHeight="8dp"
+        android:paddingBottom="40dp">
 
     </ListView>
+
 </LinearLayout>
