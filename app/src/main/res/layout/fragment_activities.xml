@@ -23,12 +23,15 @@
                 android:textColor="#FFFFFF"
                 android:background="@color/dailiesColor"
                 android:gravity="center"/>
-            <ListView
-                android:id="@+id/dailies_list_view"
+            <!-- TODO: Finish changing ListViews to LinearLayouts-->
+            <LinearLayout
+                android:id="@+id/dailies_linear_layout"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#FFFFFF">
-            </ListView>
+                android:background="@color/mainAreaColor">
+
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout

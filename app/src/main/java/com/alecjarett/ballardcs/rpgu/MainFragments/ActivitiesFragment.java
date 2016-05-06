@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.alecjarett.ballardcs.rpgu.R;
 
@@ -26,7 +27,13 @@ public class ActivitiesFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_activities, container, false);
+        View root = inflater.inflate(R.layout.fragment_activities,container,false);
+
+        LinearLayout dailies = (LinearLayout) root.findViewById(R.id.dailies_linear_layout);
+
+        //TODO: Finish item loading
+
+        return root;
     }
 
 }

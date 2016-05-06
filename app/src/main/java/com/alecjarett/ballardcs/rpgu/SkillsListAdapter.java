@@ -68,14 +68,13 @@ public class SkillsListAdapter extends ArrayAdapter<Skill> {
         TextView nextLevel = (TextView) root.findViewById(R.id.next_level_progress);
         nextLevel.setText((skillLevel+1)+"");
 
-        //TODO: Get Progress Bar Working
+        //Load progress bar
         ProgressBar progressBar = (ProgressBar)root.findViewById(R.id.skill_progress_bar);
 
         double levelProgress = (double)(currentXP-levelBaseXP)/(double)(nextLevelXP-levelBaseXP);
 
         progressBar.setProgress((int)(levelProgress*100));
 
-        //TODO: Get Progress Bar Working
         return root;
     }
 }
