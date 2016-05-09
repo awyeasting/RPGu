@@ -1,6 +1,7 @@
 package com.alecjarett.ballardcs.rpgu;
 
 import android.app.Activity;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,9 @@ public class ActivitiesAdapter extends ArrayAdapter<RPGuActivity> {
 
     public View getView(int position, View convertView, ViewGroup parent){
         View root = LayoutInflater.from(getContext()).inflate(R.layout.list_item_activity, parent, false);
-        //TODO: Finish adapter
+
+        //TODO: Finish loading activity data into list item
+
         return root;
     }
 

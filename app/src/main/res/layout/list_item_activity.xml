@@ -7,18 +7,18 @@
     <RelativeLayout
         android:layout_width="50dp"
         android:layout_height="50dp">
-        <shape
-            android:shape="oval">
-            <solid
-                android:color="@color/dailiesColor"/>
-            <size
-                android:width="@dimen/iconCircleSize"
-                android:height="@dimen/iconCircleSize"/>
-        </shape>
+
+        <!-- TODO: Finish UI -->
         <ImageView
             android:id="@+id/activity_icon_image"
+            android:src="@drawable/strength_icon"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </RelativeLayout>
+    <TextView
+        android:id="@+id/activity_category_name"
+        android:text="Running"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <!-- TODO: Finish item-->
 </LinearLayout>
