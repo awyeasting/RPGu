@@ -45,21 +45,43 @@ public class ActivitiesFragment extends Fragment{
 
         //TODO: finish loading activities from a given list
 
-        //Get the Linear Layout for the daily activities to load into
+        //Get the LinearLayouts for the activities to load into
         LinearLayout dailies = (LinearLayout) root.findViewById(R.id.dailies_linear_layout);
+        LinearLayout weeklies = (LinearLayout) root.findViewById(R.id.weeklies_linear_layout);
+        LinearLayout monthlies = (LinearLayout) root.findViewById(R.id.monthlies_linear_layout);
 
-        //Get the list of daily activities to load
-        List<RPGuActivity> activities = new ArrayList<RPGuActivity>();
-            activities.add(new RPGuActivity(1, 1, "Running", "Run a mile", 1000));
+        //Get the lists of activities to load
+        List<RPGuActivity> dailyActivities = new ArrayList<RPGuActivity>();
+            dailyActivities.add(new RPGuActivity(1, 1, "Running", "Run a mile in my shoes", 1000, "endurance"));
+        List<RPGuActivity> weeklyActivities = new ArrayList<RPGuActivity>();
+            weeklyActivities.add(new RPGuActivity(1, 10, "Running", "Run a mile in my shoes", 10000, "endurance"));
+        List<RPGuActivity> monthlyActivities = new ArrayList<RPGuActivity>();
+            monthlyActivities.add(new RPGuActivity(1, 100, "Running", "Run a mile in my shoes", 100000, "endurance"));
 
         //Adapter for the list to the LinearLayout
-        ActivitiesAdapter adapter = new ActivitiesAdapter(getActivity(),activities, ActivitiesAdapter.ActivityType.Daily);
+        ActivitiesAdapter dailiesAdapter = new ActivitiesAdapter(getActivity(), dailyActivities, ActivitiesAdapter.ActivityType.Daily);
+        ActivitiesAdapter weekliesAdapter = new ActivitiesAdapter(getActivity(), weeklyActivities, ActivitiesAdapter.ActivityType.Weekly);
+        ActivitiesAdapter monthliesAdapter = new ActivitiesAdapter(getActivity(), monthlyActivities, ActivitiesAdapter.ActivityType.Monthly);
 
-        //Add list items to the LinearLayout
-        final int adapterLength = adapter.getCount();
-        for(int i = 0; i<adapterLength; i++){
-            View item = adapter.getView(i,null,null);
+        //Add dailies list items to the LinearLayout
+        final int dailiesAdapterLength = dailiesAdapter.getCount();
+        for(int i = 0; i<dailiesAdapterLength; i++){
+            View item = dailiesAdapter.getView(i,null,null);
             dailies.addView(item);
+        }
+
+        //Add weeklies list items to the LinearLayout
+        final int weekliesAdapterLength = weekliesAdapter.getCount();
+        for(int i = 0; i<weekliesAdapterLength; i++){
+            View item = weekliesAdapter.getView(i,null,null);
+            weeklies.addView(item);
+        }
+
+        //Add monthlies list items to the LinearLayout
+        final int monthliesAdapterLength = monthliesAdapter.getCount();
+        for(int i = 0; i<monthliesAdapterLength; i++){
+            View item = monthliesAdapter.getView(i,null,null);
+            monthlies.addView(item);
         }
 
         return root;

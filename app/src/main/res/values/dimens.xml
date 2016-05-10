@@ -7,5 +7,9 @@
     <dimen name="tab_label">14sp</dimen>
     <dimen name="custom_tab_layout_height">72dp</dimen>
 
-    <dimen name="iconCircleSize">50dp</dimen>
+    <!-- Activity dimension variables -->
+    <dimen name="activity_type_header_size">25dp</dimen>
+    <dimen name="activity_icon_background_size">80dp</dimen>
+    <dimen name="activity_icon_size">70dp</dimen>
+
 </resources>

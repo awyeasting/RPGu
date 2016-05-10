@@ -10,13 +10,15 @@ public class RPGuActivity {
     private String label;
     private String description;
     private int xp;
+    private String categoryLabel;
 
-    public RPGuActivity(int quantityToDo,int quantityDone,String label,String description, int xp){
+    public RPGuActivity(int quantityToDo,int quantityDone,String label,String description, int xp, String categoryLabel){
         this.quantityToDo=quantityToDo;
         this.quantityDone=quantityDone;
         this.label=label;
         this.description=description;
         this.xp=xp;
+        this.categoryLabel=categoryLabel;
     }
 
     public int getQuantityToDo() { return quantityToDo; }
@@ -24,4 +26,5 @@ public class RPGuActivity {
     public String getLabel() { return label; }
     public String getDescription() { return description; }
     public int getXp() { return xp; }
+    public String getCategoryLabel() { return categoryLabel; }
 }
