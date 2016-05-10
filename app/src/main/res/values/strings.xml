@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">RPGu</string>
+
+    <!-- Activities Fragment Strings -->
+    <string name="daily_activities_label">Dailies</string>
+    <string name="weekly_activities_label">Weeklies</string>
+    <string name="monthly_activities_label">Monthlies</string>
+
+    <!-- -->
 </resources>

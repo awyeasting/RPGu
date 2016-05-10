@@ -4,26 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/behindMainArea">
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="20dp">
+        android:padding="@dimen/around_activities_lists_padding">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginBottom="20dp">
+            android:layout_marginBottom="@dimen/space_between_activity_types">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Dailies"
+                android:text="@string/daily_activities_label"
                 android:textSize="@dimen/activity_type_header_size"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/activity_type_header_text_color"
                 android:background="@color/dailiesColor"
                 android:gravity="center"/>
-            <!-- TODO: Finish changing ListViews to LinearLayouts-->
             <LinearLayout
                 android:id="@+id/dailies_linear_layout"
                 android:orientation="vertical"
@@ -38,13 +38,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginBottom="20dp">
+            android:layout_marginBottom="@dimen/space_between_activity_types">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Weeklies"
+                android:text="@string/weekly_activities_label"
                 android:textSize="@dimen/activity_type_header_size"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/activity_type_header_text_color"
                 android:background="@color/weekliesColor"
                 android:gravity="center"/>
             <LinearLayout
@@ -61,13 +61,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginBottom="20dp">
+            android:layout_marginBottom="@dimen/space_between_activity_types">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Monthlies"
+                android:text="@string/monthly_activities_label"
                 android:textSize="@dimen/activity_type_header_size"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/activity_type_header_text_color"
                 android:background="@color/monthliesColor"
                 android:gravity="center"/>
             <LinearLayout

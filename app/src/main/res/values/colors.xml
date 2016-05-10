@@ -15,5 +15,7 @@
     <color name="weekliesColor">#0099FF</color>
     <color name="monthliesColor">#7700BB</color>
 
+    <color name="activity_type_header_text_color">#FFFFFF</color>
+
     <color name="progressBarForegroundColor">#0066FF</color>
 </resources>
