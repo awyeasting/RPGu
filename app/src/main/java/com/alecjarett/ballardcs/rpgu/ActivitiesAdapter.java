@@ -19,9 +19,11 @@ import java.util.List;
  */
 public class ActivitiesAdapter extends ArrayAdapter<RPGuActivity> {
 
+    private ActivityType activityType;
 
-    public ActivitiesAdapter(Activity context, List<RPGuActivity> activityList){
+    public ActivitiesAdapter(Activity context, List<RPGuActivity> activityList, ActivityType activityType){
         super(context,0,activityList);
+        this.activityType=activityType;
     }
 
     public View getView(int position, View convertView, ViewGroup parent){
@@ -55,7 +57,7 @@ public class ActivitiesAdapter extends ArrayAdapter<RPGuActivity> {
         View iconBackground = root.findViewById(R.id.activity_icon_circle);
 
         int backgroundColor;
-        switch (activity.getActivityType()){
+        switch (activityType){
             case Weekly:
                 backgroundColor = R.color.weekliesColor;
                 break;
@@ -73,4 +75,6 @@ public class ActivitiesAdapter extends ArrayAdapter<RPGuActivity> {
 
         return root;
     }
+
+    public enum ActivityType{Daily,Weekly,Monthly}
 }

@@ -53,21 +53,24 @@
         android:orientation="vertical"
         android:layout_marginRight="30dp"
         android:layout_marginLeft="30dp"
-        android:background="@color/mainAreaColor"
-        android:padding="8dp"
         android:layout_marginBottom="80dp">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/activities_in_progress_label"
             android:textSize="@dimen/list_label_size"
+            android:padding="8dp"
             android:gravity="center_horizontal"
-            android:textColor="@color/textColorSecondary" />
+            android:textColor="@color/textColorSecondary"
+            android:background="@color/mainAreaColor"
+            android:layout_marginBottom="10dp"/>
         <LinearLayout
             android:id="@+id/activities_almost_complete"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/behindMainArea"
+            android:layout_marginBottom="15dp">
 
         </LinearLayout>
         <TextView
@@ -75,13 +78,17 @@
             android:layout_height="wrap_content"
             android:text="@string/skill_closest_to_leveling_up_label"
             android:textSize="@dimen/list_label_size"
+            android:padding="8dp"
             android:gravity="center_horizontal"
-            android:textColor="@color/textColorSecondary" />
+            android:textColor="@color/textColorSecondary"
+            android:background="@color/mainAreaColor"
+            android:layout_marginBottom="10dp"/>
         <LinearLayout
             android:id="@+id/skill_closest_to_leveling"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp">
 
         </LinearLayout>
         <TextView
@@ -89,13 +96,17 @@
             android:layout_height="wrap_content"
             android:text="@string/achievements_almost_complete"
             android:textSize="@dimen/list_label_size"
+            android:padding="8dp"
             android:gravity="center"
-            android:textColor="@color/textColorSecondary"/>
+            android:textColor="@color/textColorSecondary"
+            android:background="@color/mainAreaColor"
+            android:layout_marginBottom="10dp"/>
         <LinearLayout
             android:id="@+id/achievements_almost_complete"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp">
 
         </LinearLayout>
     </LinearLayout>

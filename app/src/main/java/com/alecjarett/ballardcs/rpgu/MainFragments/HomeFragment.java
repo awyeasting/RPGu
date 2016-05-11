@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 
 import com.alecjarett.ballardcs.rpgu.ActivitiesAdapter;
+import com.alecjarett.ballardcs.rpgu.ActivitiesInProgressAdapter;
 import com.alecjarett.ballardcs.rpgu.R;
 import com.alecjarett.ballardcs.rpgu.RPGuActivity;
 import com.alecjarett.ballardcs.rpgu.Skill;
@@ -44,12 +45,13 @@ public class HomeFragment extends Fragment{
         //Set activities almost complete
         LinearLayout activitiesAlmostComplete = (LinearLayout) root.findViewById(R.id.activities_almost_complete);
         List<RPGuActivity> activities = new ArrayList<RPGuActivity>();
-            activities.add(new RPGuActivity(8, 10, "Running", "Run a mile in my shoes", 10000, "endurance", RPGuActivity.ActivityType.Weekly));
-        ActivitiesAdapter activitiesAdapter = new ActivitiesAdapter(getActivity(),activities);
+            activities.add(new RPGuActivity(10, 8, "Running", "Run a mile in my shoes", 10000, "endurance"));
+            activities.add(new RPGuActivity(0, 1, "Running", "Run a mile in my shoes", 10000, "endurance"));
+        ActivitiesInProgressAdapter activitiesInProgressAdapter = new ActivitiesInProgressAdapter(getActivity(),activities);
 
-        int activitiesCount = activitiesAdapter.getCount();
+        int activitiesCount = activitiesInProgressAdapter.getCount();
         for(int i = 0; i < activitiesCount; i++){
-            activitiesAlmostComplete.addView(activitiesAdapter.getView(i,null,null));
+            activitiesAlmostComplete.addView(activitiesInProgressAdapter.getView(i, null, null));
         }
 
         //Set the closest skill to leveling up

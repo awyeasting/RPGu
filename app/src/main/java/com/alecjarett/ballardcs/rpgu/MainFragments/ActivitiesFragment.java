@@ -50,16 +50,16 @@ public class ActivitiesFragment extends Fragment{
 
         //Get the lists of activities to load
         List<RPGuActivity> dailyActivities = new ArrayList<RPGuActivity>();
-            dailyActivities.add(new RPGuActivity(1, 1, "Running", "Run a mile in my shoes", 1000, "endurance", RPGuActivity.ActivityType.Daily));
+            dailyActivities.add(new RPGuActivity(1, 1, "Running", "Run a mile in my shoes", 1000, "endurance"));
         List<RPGuActivity> weeklyActivities = new ArrayList<RPGuActivity>();
-            weeklyActivities.add(new RPGuActivity(1, 10, "Running", "Run a mile in my shoes", 10000, "endurance", RPGuActivity.ActivityType.Weekly));
+            weeklyActivities.add(new RPGuActivity(1, 10, "Running", "Run a mile in my shoes", 10000, "endurance"));
         List<RPGuActivity> monthlyActivities = new ArrayList<RPGuActivity>();
-            monthlyActivities.add(new RPGuActivity(1, 100, "Running", "Run a mile in my shoes", 100000, "endurance", RPGuActivity.ActivityType.Monthly));
+            monthlyActivities.add(new RPGuActivity(1, 100, "Running", "Run a mile in my shoes", 100000, "endurance"));
 
         //Adapter for the list to the LinearLayout
-        ActivitiesAdapter dailiesAdapter = new ActivitiesAdapter(getActivity(), dailyActivities);
-        ActivitiesAdapter weekliesAdapter = new ActivitiesAdapter(getActivity(), weeklyActivities);
-        ActivitiesAdapter monthliesAdapter = new ActivitiesAdapter(getActivity(), monthlyActivities);
+        ActivitiesAdapter dailiesAdapter = new ActivitiesAdapter(getActivity(), dailyActivities, ActivitiesAdapter.ActivityType.Daily);
+        ActivitiesAdapter weekliesAdapter = new ActivitiesAdapter(getActivity(), weeklyActivities, ActivitiesAdapter.ActivityType.Weekly);
+        ActivitiesAdapter monthliesAdapter = new ActivitiesAdapter(getActivity(), monthlyActivities, ActivitiesAdapter.ActivityType.Monthly);
 
         //Add dailies list items to the LinearLayout
         final int dailiesAdapterLength = dailiesAdapter.getCount();
