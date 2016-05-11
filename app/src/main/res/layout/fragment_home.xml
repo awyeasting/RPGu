@@ -1,91 +1,95 @@
 <ScrollView
-    android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/behindMainArea"
+    android:layout_width="match_parent"
+    android:background="@color/behindMainArea">
+
+    <LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:paddingTop="16dp">
     <LinearLayout
+        android:id="@+id/days_active_circle"
         android:orientation="vertical"
+        android:layout_marginBottom="32dp"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_gravity="center"
         android:background="@drawable/behind_icon_circle">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="30dp"
+            android:paddingTop="20dp"
             android:gravity="center_horizontal"
             android:text="Active for"
             android:textColor="@color/textColorPrimary"
-            android:textSize="32dp"
+            android:textSize="28dp"
             android:layout_gravity="center_horizontal" />
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
             android:text="1"
             android:textColor="@color/textColorPrimary"
             android:textSize="70dp"
-            android:singleLine="false"
+            android:layout_weight="1"
             android:id="@+id/active_for_days_number"
             android:layout_gravity="center_horizontal" />
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="16dp"
-            android:gravity="bottom"
-            android:layout_gravity="center"
+            android:gravity="center"
             android:text="Day!"
             android:textColor="@color/textColorPrimary"
-            android:textSize="32dp"
+            android:textSize="28dp"
             android:id="@+id/day_or_days_text" />
 
     </LinearLayout>
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="32dp"
-        android:background="@color/behindMainArea"></FrameLayout>
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:nestedScrollingEnabled="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:layout_gravity="center_horizontal"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
         android:background="@color/mainAreaColor"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:layout_marginBottom="80dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="32dp"
-            android:text="Activities \nAlmost Complete"
+            android:textSize="20dp"
+            android:text="Activities Almost Complete"
+            android:textIsSelectable="false"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/textColorSecondary" />
+        <!-- TODO: Create LinearLayout to load some almost complete activities into-->
+        <LinearLayout
+            android:id="@+id/activities_almost_complete"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Skill Closest to Leveling Up"
             android:textIsSelectable="false"
             android:gravity="center_horizontal"
             android:autoText="false"
             android:layout_gravity="center_horizontal"
             android:textColor="@color/textColorSecondary" />
-        <ListView
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
-            android:id="@+id/almost_complete_achievements"
-            android:nestedScrollingEnabled="true"></ListView>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="32dp"
-            android:text="Skill Closest to\nLeveling Up"
-            android:textIsSelectable="false"
-            android:gravity="center_horizontal"
-            android:autoText="false"
-            android:layout_gravity="center_horizontal"
-            android:textColor="@color/textColorSecondary" />
-        <ListView
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
-            android:id="@+id/closest_skill"></ListView>
+        <LinearLayout
+            android:id="@+id/skill_closest_to_leveling"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
 </ScrollView>

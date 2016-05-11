@@ -11,14 +11,16 @@ public class RPGuActivity {
     private String description;
     private int xp;
     private String categoryLabel;
+    private ActivityType activityType;
 
-    public RPGuActivity(int quantityToDo,int quantityDone,String label,String description, int xp, String categoryLabel){
+    public RPGuActivity(int quantityToDo,int quantityDone,String label,String description, int xp, String categoryLabel, ActivityType activityType){
         this.quantityToDo=quantityToDo;
         this.quantityDone=quantityDone;
         this.label=label;
         this.description=description;
         this.xp=xp;
         this.categoryLabel=categoryLabel;
+        this.activityType=activityType;
     }
 
     public int getQuantityToDo() { return quantityToDo; }
@@ -27,4 +29,7 @@ public class RPGuActivity {
     public String getDescription() { return description; }
     public int getXp() { return xp; }
     public String getCategoryLabel() { return categoryLabel; }
+    public ActivityType getActivityType() { return activityType; }
+
+    public enum ActivityType{Daily,Weekly,Monthly}
 }

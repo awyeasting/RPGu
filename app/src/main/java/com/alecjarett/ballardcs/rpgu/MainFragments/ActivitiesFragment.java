@@ -41,9 +41,7 @@ public class ActivitiesFragment extends Fragment{
 
         //                                                                      //
         //                          Activities Loading                          //
-        //
-
-        //TODO: finish loading activities from a given list
+        //                                                                      //
 
         //Get the LinearLayouts for the activities to load into
         LinearLayout dailies = (LinearLayout) root.findViewById(R.id.dailies_linear_layout);
@@ -52,16 +50,16 @@ public class ActivitiesFragment extends Fragment{
 
         //Get the lists of activities to load
         List<RPGuActivity> dailyActivities = new ArrayList<RPGuActivity>();
-            dailyActivities.add(new RPGuActivity(1, 1, "Running", "Run a mile in my shoes", 1000, "endurance"));
+            dailyActivities.add(new RPGuActivity(1, 1, "Running", "Run a mile in my shoes", 1000, "endurance", RPGuActivity.ActivityType.Daily));
         List<RPGuActivity> weeklyActivities = new ArrayList<RPGuActivity>();
-            weeklyActivities.add(new RPGuActivity(1, 10, "Running", "Run a mile in my shoes", 10000, "endurance"));
+            weeklyActivities.add(new RPGuActivity(1, 10, "Running", "Run a mile in my shoes", 10000, "endurance", RPGuActivity.ActivityType.Weekly));
         List<RPGuActivity> monthlyActivities = new ArrayList<RPGuActivity>();
-            monthlyActivities.add(new RPGuActivity(1, 100, "Running", "Run a mile in my shoes", 100000, "endurance"));
+            monthlyActivities.add(new RPGuActivity(1, 100, "Running", "Run a mile in my shoes", 100000, "endurance", RPGuActivity.ActivityType.Monthly));
 
         //Adapter for the list to the LinearLayout
-        ActivitiesAdapter dailiesAdapter = new ActivitiesAdapter(getActivity(), dailyActivities, ActivitiesAdapter.ActivityType.Daily);
-        ActivitiesAdapter weekliesAdapter = new ActivitiesAdapter(getActivity(), weeklyActivities, ActivitiesAdapter.ActivityType.Weekly);
-        ActivitiesAdapter monthliesAdapter = new ActivitiesAdapter(getActivity(), monthlyActivities, ActivitiesAdapter.ActivityType.Monthly);
+        ActivitiesAdapter dailiesAdapter = new ActivitiesAdapter(getActivity(), dailyActivities);
+        ActivitiesAdapter weekliesAdapter = new ActivitiesAdapter(getActivity(), weeklyActivities);
+        ActivitiesAdapter monthliesAdapter = new ActivitiesAdapter(getActivity(), monthlyActivities);
 
         //Add dailies list items to the LinearLayout
         final int dailiesAdapterLength = dailiesAdapter.getCount();
