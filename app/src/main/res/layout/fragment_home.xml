@@ -57,15 +57,12 @@
         android:padding="8dp"
         android:layout_marginBottom="80dp">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:text="Activities Almost Complete"
-            android:textIsSelectable="false"
+            android:text="@string/activities_in_progress_label"
+            android:textSize="@dimen/list_label_size"
             android:gravity="center_horizontal"
-            android:layout_gravity="center_horizontal"
             android:textColor="@color/textColorSecondary" />
-        <!-- TODO: Create LinearLayout to load some almost complete activities into-->
         <LinearLayout
             android:id="@+id/activities_almost_complete"
             android:orientation="vertical"
@@ -74,17 +71,28 @@
 
         </LinearLayout>
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:text="Skill Closest to Leveling Up"
-            android:textIsSelectable="false"
+            android:text="@string/skill_closest_to_leveling_up_label"
+            android:textSize="@dimen/list_label_size"
             android:gravity="center_horizontal"
-            android:autoText="false"
-            android:layout_gravity="center_horizontal"
             android:textColor="@color/textColorSecondary" />
         <LinearLayout
             android:id="@+id/skill_closest_to_leveling"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/achievements_almost_complete"
+            android:textSize="@dimen/list_label_size"
+            android:gravity="center"
+            android:textColor="@color/textColorSecondary"/>
+        <LinearLayout
+            android:id="@+id/achievements_almost_complete"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

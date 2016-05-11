@@ -7,5 +7,9 @@
     <string name="weekly_activities_label">Weeklies</string>
     <string name="monthly_activities_label">Monthlies</string>
 
-    <!-- -->
+    <!-- Home Fragment Strings -->
+    <string name="activities_in_progress_label">Activities In Progress</string>
+    <string name="achievements_almost_complete">Achievements Almost Complete</string>
+    <string name="skill_closest_to_leveling_up_label">Skill Closest To Leveling Up</string>
+
 </resources>
