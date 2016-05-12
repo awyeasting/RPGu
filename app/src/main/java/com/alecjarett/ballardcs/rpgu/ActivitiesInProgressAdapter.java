@@ -18,7 +18,6 @@ import java.util.List;
  */
 public class ActivitiesInProgressAdapter extends ArrayAdapter<RPGuActivity> {
 
-
     public ActivitiesInProgressAdapter(Activity context, List<RPGuActivity> activityList){
         super(context,0,activityList);
     }

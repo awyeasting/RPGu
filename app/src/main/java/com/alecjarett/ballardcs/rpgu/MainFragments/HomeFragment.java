@@ -13,6 +13,7 @@ import com.alecjarett.ballardcs.rpgu.ActivitiesInProgressAdapter;
 import com.alecjarett.ballardcs.rpgu.R;
 import com.alecjarett.ballardcs.rpgu.RPGuActivity;
 import com.alecjarett.ballardcs.rpgu.Skill;
+import com.alecjarett.ballardcs.rpgu.SkillClosestToLevelingAdapter;
 import com.alecjarett.ballardcs.rpgu.SkillsListAdapter;
 
 import java.util.ArrayList;
@@ -56,12 +57,10 @@ public class HomeFragment extends Fragment{
 
         //Set the closest skill to leveling up
         LinearLayout closestSkillToLevel = (LinearLayout) root.findViewById(R.id.skill_closest_to_leveling);
-        List<Skill> closestSkill = new ArrayList<Skill>();
-            closestSkill.add(new Skill("Wisdom",190));
-        SkillsListAdapter skillAdapter = new SkillsListAdapter(getActivity(),closestSkill);
+        Skill closestSkill = new Skill("Wisdom",190);
+        SkillClosestToLevelingAdapter skillClosestToLevelingAdapter = new SkillClosestToLevelingAdapter(getActivity(),closestSkill);
 
-        if(skillAdapter.getCount()>0)
-            closestSkillToLevel.addView(skillAdapter.getView(0,null,null));
+        closestSkillToLevel.addView(skillClosestToLevelingAdapter.getView(null));
 
         return root;
     }
