@@ -8,7 +8,21 @@
     <dimen name="custom_tab_layout_height">72dp</dimen>
 
     <!-- Home dimension variables -->
+    <dimen name="above_days_active_circle_margin">16dp</dimen>
+    <dimen name="below_days_active_circle_margin">32dp</dimen>
+    <dimen name="days_active_circle_diameter">200dp</dimen>
+    <dimen name="days_active_circle_text_size">28dp</dimen>
+    <dimen name="days_active_circle_top_text_padding">20dp</dimen>
+    <dimen name="days_active_circle_bottom_text_padding">16dp</dimen>
+    <dimen name="days_active_number_text_size">70dp</dimen>
+
     <dimen name="list_label_size">20dp</dimen>
+    <dimen name="space_between_list_label_and_list">10dp</dimen>
+    <dimen name="space_between_list_and_list_label">15dp</dimen>
+    <dimen name="list_label_padding">8dp</dimen>
+
+    <dimen name="list_side_margins">30dp</dimen>
+    <dimen name="lists_bottom_margin">80dp</dimen>
 
     <!-- Activities dimension variables -->
     <dimen name="activity_type_header_size">25dp</dimen>

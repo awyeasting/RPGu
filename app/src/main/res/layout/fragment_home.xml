@@ -7,24 +7,24 @@
     <LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingTop="16dp">
+    android:layout_height="match_parent">
     <LinearLayout
         android:id="@+id/days_active_circle"
         android:orientation="vertical"
-        android:layout_marginBottom="32dp"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_marginTop="@dimen/above_days_active_circle_margin"
+        android:layout_marginBottom="@dimen/below_days_active_circle_margin"
+        android:layout_width="@dimen/days_active_circle_diameter"
+        android:layout_height="@dimen/days_active_circle_diameter"
         android:layout_gravity="center"
         android:background="@drawable/behind_icon_circle">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="20dp"
+            android:paddingTop="@dimen/days_active_circle_top_text_padding"
             android:gravity="center_horizontal"
-            android:text="Active for"
+            android:text="@string/active_for_text"
             android:textColor="@color/textColorPrimary"
-            android:textSize="28dp"
+            android:textSize="@dimen/days_active_circle_text_size"
             android:layout_gravity="center_horizontal" />
         <TextView
             android:layout_width="match_parent"
@@ -32,18 +32,18 @@
             android:gravity="center"
             android:text="1"
             android:textColor="@color/textColorPrimary"
-            android:textSize="70dp"
+            android:textSize="@dimen/days_active_number_text_size"
             android:layout_weight="1"
             android:id="@+id/active_for_days_number"
             android:layout_gravity="center_horizontal" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="16dp"
+            android:paddingBottom="@dimen/days_active_circle_bottom_text_padding"
             android:gravity="center"
-            android:text="Day!"
+            android:text="@string/active_for_day"
             android:textColor="@color/textColorPrimary"
-            android:textSize="28dp"
+            android:textSize="@dimen/days_active_circle_text_size"
             android:id="@+id/day_or_days_text" />
 
     </LinearLayout>
@@ -51,26 +51,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginBottom="80dp">
+        android:layout_marginRight="@dimen/list_side_margins"
+        android:layout_marginLeft="@dimen/list_side_margins"
+        android:layout_marginBottom="@dimen/lists_bottom_margin">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/activities_in_progress_label"
             android:textSize="@dimen/list_label_size"
-            android:padding="8dp"
+            android:padding="@dimen/list_label_padding"
             android:gravity="center_horizontal"
             android:textColor="@color/textColorPrimary"
             android:background="@color/colorPrimary"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="@dimen/space_between_list_label_and_list"/>
         <LinearLayout
             android:id="@+id/activities_almost_complete"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/behindMainArea"
-            android:layout_marginBottom="15dp">
+            android:layout_marginBottom="@dimen/space_between_list_and_list_label">
 
         </LinearLayout>
         <TextView
@@ -78,17 +78,17 @@
             android:layout_height="wrap_content"
             android:text="@string/skill_closest_to_leveling_up_label"
             android:textSize="@dimen/list_label_size"
-            android:padding="8dp"
+            android:padding="@dimen/list_label_padding"
             android:gravity="center_horizontal"
             android:textColor="@color/textColorPrimary"
             android:background="@color/colorPrimary"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="@dimen/space_between_list_label_and_list"/>
         <LinearLayout
             android:id="@+id/skill_closest_to_leveling"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp">
+            android:layout_marginBottom="@dimen/space_between_list_and_list_label">
 
         </LinearLayout>
         <TextView
@@ -96,17 +96,17 @@
             android:layout_height="wrap_content"
             android:text="@string/achievements_almost_complete"
             android:textSize="@dimen/list_label_size"
-            android:padding="8dp"
+            android:padding="@dimen/list_label_padding"
             android:gravity="center"
             android:textColor="@color/textColorPrimary"
             android:background="@color/colorPrimary"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="@dimen/space_between_list_label_and_list"/>
         <LinearLayout
             android:id="@+id/achievements_almost_complete"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp">
+            android:layout_marginBottom="@dimen/space_between_list_and_list_label">
 
         </LinearLayout>
     </LinearLayout>

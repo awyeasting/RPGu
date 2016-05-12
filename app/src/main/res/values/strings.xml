@@ -12,4 +12,7 @@
     <string name="achievements_almost_complete">Achievements Almost Complete</string>
     <string name="skill_closest_to_leveling_up_label">Skill Closest To Leveling Up</string>
 
+    <string name="active_for_text">Active for</string>
+    <string name="active_for_day">Day!</string>
+
 </resources>
