@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/behindMainArea">
 
-    <ListView
-        android:id="@+id/skills_list_view"
+    <LinearLayout
+        android:id="@+id/skills_linear_layout"
         android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="8dp"
-        android:paddingBottom="50dp">
+        android:orientation="vertical"
+        android:paddingBottom="70dp">
 
-    </ListView>
+    </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

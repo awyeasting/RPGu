@@ -61,8 +61,8 @@
             android:textSize="@dimen/list_label_size"
             android:padding="8dp"
             android:gravity="center_horizontal"
-            android:textColor="@color/textColorSecondary"
-            android:background="@color/mainAreaColor"
+            android:textColor="@color/textColorPrimary"
+            android:background="@color/colorPrimary"
             android:layout_marginBottom="10dp"/>
         <LinearLayout
             android:id="@+id/activities_almost_complete"
@@ -80,8 +80,8 @@
             android:textSize="@dimen/list_label_size"
             android:padding="8dp"
             android:gravity="center_horizontal"
-            android:textColor="@color/textColorSecondary"
-            android:background="@color/mainAreaColor"
+            android:textColor="@color/textColorPrimary"
+            android:background="@color/colorPrimary"
             android:layout_marginBottom="10dp"/>
         <LinearLayout
             android:id="@+id/skill_closest_to_leveling"
@@ -98,8 +98,8 @@
             android:textSize="@dimen/list_label_size"
             android:padding="8dp"
             android:gravity="center"
-            android:textColor="@color/textColorSecondary"
-            android:background="@color/mainAreaColor"
+            android:textColor="@color/textColorPrimary"
+            android:background="@color/colorPrimary"
             android:layout_marginBottom="10dp"/>
         <LinearLayout
             android:id="@+id/achievements_almost_complete"

@@ -5,12 +5,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.alecjarett.ballardcs.rpgu.R;
 import com.alecjarett.ballardcs.rpgu.Skill;
 import com.alecjarett.ballardcs.rpgu.SkillsListAdapter;
 
+import java.io.LineNumberReader;
 import java.util.ArrayList;
 
 /**
@@ -47,9 +49,13 @@ public class StatsFragment extends Fragment{
         skillsAdapter = new SkillsListAdapter(getActivity(), skills);
         //TODO: Put skill information into adapter and develop skill information hierarchy
 
-        //Find the list of skills in the stats page, then set adapter
-        ListView skillsListView = (ListView) root.findViewById(R.id.skills_list_view);
-        skillsListView.setAdapter(skillsAdapter);
+        //Find the LinearLayout for the skills
+        LinearLayout skillsLinearLayout = (LinearLayout) root.findViewById(R.id.skills_linear_layout);
+
+        int count = skillsAdapter.getCount();
+        for(int i = 0; i < count; i++){
+            skillsLinearLayout.addView(skillsAdapter.getView(i,null,null));
+        }
 
         return root;
     }
