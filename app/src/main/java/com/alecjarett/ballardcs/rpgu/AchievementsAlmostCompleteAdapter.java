@@ -1,10 +1,13 @@
 package com.alecjarett.ballardcs.rpgu;
 
-    import android.app.Activity;
+import android.app.Activity;
+import android.graphics.drawable.GradientDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -13,6 +16,7 @@ import java.util.List;
  * Created by LundHopkins on 5/12/2016.
  */
     public class AchievementsAlmostCompleteAdapter extends ArrayAdapter<RPGuAchievement> {
+
 
         public AchievementsAlmostCompleteAdapter(Activity context, List<RPGuAchievement> achievementList){
             super(context,0,achievementList);
@@ -53,6 +57,27 @@ import java.util.List;
                 View dividerLine = root.findViewById(R.id.divider_line);
                 dividerLine.setVisibility(View.GONE);
             }
+
+
+
+            ImageView achievementCategoryIcon = (ImageView) root.findViewById(R.id.achievement_icon_image);
+            try {
+                achievementCategoryIcon.setImageResource(this.getContext()
+                        .getResources()
+                        .getIdentifier(achievement.getCategoryLabel().toLowerCase() + "_icon_white",
+                                "drawable",
+                                this.getContext().getPackageName()));
+            }catch (Exception e){
+                Log.e("hi,", "problem loading skill image");
+                achievementCategoryIcon.setImageResource(R.drawable.problem_loading_icon_white);
+            }
+
+            View iconBackground = root.findViewById(R.id.achievement_icon_circle);
+
+
+                    int backgroundColor = R.color.achievementsProgressColor;
+
+            ((GradientDrawable)iconBackground.getBackground()).setColor(getContext().getResources().getColor(backgroundColor));
 
             return root;
         }

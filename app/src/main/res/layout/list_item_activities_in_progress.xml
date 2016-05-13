@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/mainAreaColor">
+<RelativeLayout
+    android:layout_width="@dimen/activity_progress_icon_size"
+    android:layout_height="@dimen/activity_progress_icon_size"
+    android:padding="@dimen/padding_around_item_icon"
+    android:background="@color/mainAreaColor">
+    <View
+        android:id="@+id/activity_icon_circle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/behind_icon_circle"/>
+    <ImageView
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:padding="@dimen/padding_around_item_icon"
+        android:id="@+id/activity_icon_image"
+        android:src="@drawable/strength_icon_white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</RelativeLayout>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/mainAreaColor"
     android:paddingTop="10dp">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -78,3 +102,4 @@
         android:layout_marginTop="10dp"
         android:background="#BBBBBB"/>
 </LinearLayout>
+    </LinearLayout>

@@ -18,6 +18,7 @@ import java.util.List;
  */
 public class ActivitiesInProgressAdapter extends ArrayAdapter<RPGuActivity> {
 
+
     public ActivitiesInProgressAdapter(Activity context, List<RPGuActivity> activityList){
         super(context,0,activityList);
     }
@@ -57,6 +58,24 @@ public class ActivitiesInProgressAdapter extends ArrayAdapter<RPGuActivity> {
             View dividerLine = root.findViewById(R.id.divider_line);
             dividerLine.setVisibility(View.GONE);
         }
+
+        ImageView activityCategoryIcon = (ImageView) root.findViewById(R.id.activity_icon_image);
+        try {
+            activityCategoryIcon.setImageResource(this.getContext()
+                    .getResources()
+                    .getIdentifier(activity.getCategoryLabel().toLowerCase() + "_icon_white",
+                            "drawable",
+                            this.getContext().getPackageName()));
+        }catch (Exception e){
+            Log.e("hi,", "problem loading skill image");
+            activityCategoryIcon.setImageResource(R.drawable.problem_loading_icon_white);
+        }
+
+        View iconBackground = root.findViewById(R.id.activity_icon_circle);
+
+        int backgroundColor = R.color.activitiesProgressColor;
+
+        ((GradientDrawable)iconBackground.getBackground()).setColor(getContext().getResources().getColor(backgroundColor));
 
         return root;
     }
