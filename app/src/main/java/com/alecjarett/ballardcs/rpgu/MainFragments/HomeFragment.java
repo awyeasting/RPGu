@@ -2,19 +2,19 @@ package com.alecjarett.ballardcs.rpgu.MainFragments;
 
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-        import android.support.v4.app.Fragment;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.alecjarett.ballardcs.rpgu.ActivitiesAdapter;
+import com.alecjarett.ballardcs.rpgu.AchievementsAlmostCompleteAdapter;
 import com.alecjarett.ballardcs.rpgu.ActivitiesInProgressAdapter;
 import com.alecjarett.ballardcs.rpgu.R;
+import com.alecjarett.ballardcs.rpgu.RPGuAchievement;
 import com.alecjarett.ballardcs.rpgu.RPGuActivity;
 import com.alecjarett.ballardcs.rpgu.Skill;
 import com.alecjarett.ballardcs.rpgu.SkillClosestToLevelingAdapter;
-import com.alecjarett.ballardcs.rpgu.SkillsListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +61,18 @@ public class HomeFragment extends Fragment{
         SkillClosestToLevelingAdapter skillClosestToLevelingAdapter = new SkillClosestToLevelingAdapter(getActivity(),closestSkill);
 
         closestSkillToLevel.addView(skillClosestToLevelingAdapter.getView(null));
+
+        //Set activities almost complete
+        LinearLayout achievementsAlmostComplete = (LinearLayout) root.findViewById(R.id.achievements_almost_complete);
+        List<RPGuAchievement> achievements = new ArrayList<RPGuAchievement>();
+        achievements.add(new RPGuAchievement(10, 8, "Running", "Run a marathon", 100000, "endurance"));
+        achievements.add(new RPGuAchievement(0, 1, "Running", "Run a marathon", 100000, "endurance"));
+        AchievementsAlmostCompleteAdapter achievementsAlmostCompleteAdapter = new AchievementsAlmostCompleteAdapter(getActivity(),achievements);
+
+        int achievementsCount = achievementsAlmostCompleteAdapter.getCount();
+        for(int i = 0; i < achievementsCount; i++){
+            achievementsAlmostComplete.addView(achievementsAlmostCompleteAdapter.getView(i, null, null));
+        }
 
         return root;
     }

@@ -9,10 +9,10 @@
         android:layout_width="@dimen/activity_icon_size"
         android:layout_height="@dimen/activity_icon_size">
         <View
-            android:id="@+id/activity_icon_circle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/behind_icon_circle"/>
+        android:id="@+id/activity_icon_circle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/behind_icon_circle"/>
         <ImageView
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"

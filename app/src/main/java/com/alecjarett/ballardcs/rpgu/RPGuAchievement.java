@@ -1,18 +1,18 @@
 package com.alecjarett.ballardcs.rpgu;
 
 /**
- * Created by bal_awyeasting on 5/6/2016.
+ * Created by LundHopkins on 5/12/2016.
  */
-public class RPGuActivity {
+public class RPGuAchievement {
 
     private int quantityToDo;
     private int quantityDone;
     private String label;
     private String description;
     private int xp;
-    private String categoryLabel; //skill for activity
+    private String categoryLabel; //skill for achievement
 
-    public RPGuActivity(int quantityToDo,int quantityDone,String label,String description, int xp, String categoryLabel){
+    public RPGuAchievement(int quantityToDo, int quantityDone, String label, String description, int xp, String categoryLabel){
         this.quantityToDo=quantityToDo;
         this.quantityDone=quantityDone;
         this.label=label;
