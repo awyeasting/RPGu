@@ -12,8 +12,8 @@
     <color name="behindMainArea">#DDDDDD</color>
 
     <!-- Activities Fragment Colors -->
-    <color name="achievementsProgressColor">#28d201</color>
-    <color name="activitiesProgressColor">#f29500</color>
+    <color name="achievementsProgressColor">#BB0000</color>
+    <color name="activitiesProgressColor">#BB0000</color>
     <color name="dailiesColor">#BB0000</color>
     <color name="weekliesColor">#0099FF</color>
     <color name="monthliesColor">#7700BB</color>

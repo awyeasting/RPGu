@@ -41,10 +41,70 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new HomeFragment(), "Home");
-        adapter.addFragment(new StatsFragment(), "Stats");
-        adapter.addFragment(new ActivitiesFragment(), "Activities");
+
+        HomeFragment homeFragment = new HomeFragment();
+            homeFragment.setParentActivity(this);
+        StatsFragment statsFragment = new StatsFragment();
+            statsFragment.setParentActivity(this);
+        ActivitiesFragment activitiesFragment = new ActivitiesFragment();
+            activitiesFragment.setParentActivity(this);
+
+        adapter.addFragment(homeFragment, "Home");
+        adapter.addFragment(statsFragment, "Stats");
+        adapter.addFragment(activitiesFragment, "Activities");
+
         viewPager.setAdapter(adapter);
+    }
+
+    public List<RPGuActivity> loadCurrentActivities() {
+        List<RPGuActivity> currentActivities = new ArrayList<RPGuActivity>();
+
+        for(RPGuActivity activity : loadCurrentDailies())
+            currentActivities.add(activity);
+        for(RPGuActivity activity : loadCurrentWeeklies())
+            currentActivities.add(activity);
+        for(RPGuActivity activity : loadCurrentMonthlies())
+            currentActivities.add(activity);
+
+        return currentActivities;
+    }
+
+    public List<RPGuActivity> loadCurrentDailies() {
+        List<RPGuActivity> currentActivities = new ArrayList<RPGuActivity>();
+            currentActivities.add(new RPGuActivity(1, 0, "Running", "Run a mile in my shoes", 10000, "endurance", ActivitiesAdapter.ActivityType.Daily));
+        return currentActivities;
+    }
+
+    public List<RPGuActivity> loadCurrentWeeklies() {
+        List<RPGuActivity> currentActivities = new ArrayList<RPGuActivity>();
+            currentActivities.add(new RPGuActivity(4, 3, "Running", "Run a mile in my shoes", 10000, "endurance", ActivitiesAdapter.ActivityType.Weekly));
+        return currentActivities;
+    }
+
+    public List<RPGuActivity> loadCurrentMonthlies() {
+        List<RPGuActivity> currentActivities = new ArrayList<RPGuActivity>();
+            currentActivities.add(new RPGuActivity(16, 8, "Running", "Run a mile in my shoes", 10000, "endurance", ActivitiesAdapter.ActivityType.Monthly));
+        return currentActivities;
+    }
+
+    public List<RPGuAchievement> loadCurrentAchievements() {
+        List<RPGuAchievement> currentAchievements = new ArrayList<RPGuAchievement>();
+            currentAchievements.add(new RPGuAchievement(10, 8, "Running", "Run a marathon", 100000, "endurance"));
+            currentAchievements.add(new RPGuAchievement(1, 0, "Running", "Run a marathon", 100000, "endurance"));
+        return currentAchievements;
+    }
+
+    public List<Skill> loadSkills() {
+        List<Skill> skills = new ArrayList<Skill>();
+
+        skills.add(new Skill("Balance",110));
+        skills.add(new Skill("Cooking",310));
+        skills.add(new Skill("Endurance",510));
+        skills.add(new Skill("Flexibility",710));
+        skills.add(new Skill("Strength", 910));
+        skills.add(new Skill("Wisdom",1010));
+
+        return skills;
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {

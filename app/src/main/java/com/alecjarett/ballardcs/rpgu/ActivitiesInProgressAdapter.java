@@ -75,6 +75,18 @@ public class ActivitiesInProgressAdapter extends ArrayAdapter<RPGuActivity> {
 
         int backgroundColor = R.color.activitiesProgressColor;
 
+        switch (activity.getActivityType()){
+            case Daily:
+                backgroundColor = R.color.dailiesColor;
+                break;
+            case Weekly:
+                backgroundColor = R.color.weekliesColor;
+                break;
+            case Monthly:
+                backgroundColor = R.color.monthliesColor;
+                break;
+        }
+
         ((GradientDrawable)iconBackground.getBackground()).setColor(getContext().getResources().getColor(backgroundColor));
 
         return root;

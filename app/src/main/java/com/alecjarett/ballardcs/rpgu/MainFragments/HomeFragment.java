@@ -9,7 +9,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.alecjarett.ballardcs.rpgu.AchievementsAlmostCompleteAdapter;
+import com.alecjarett.ballardcs.rpgu.ActivitiesAdapter;
 import com.alecjarett.ballardcs.rpgu.ActivitiesInProgressAdapter;
+import com.alecjarett.ballardcs.rpgu.ExperienceFunctions;
+import com.alecjarett.ballardcs.rpgu.MainActivity;
 import com.alecjarett.ballardcs.rpgu.R;
 import com.alecjarett.ballardcs.rpgu.RPGuAchievement;
 import com.alecjarett.ballardcs.rpgu.RPGuActivity;
@@ -24,8 +27,12 @@ import java.util.List;
  */
 public class HomeFragment extends Fragment{
 
-    public HomeFragment() {
-        // Required empty public constructor
+    private MainActivity parent;
+
+    public HomeFragment(){}
+
+    public void setParentActivity(MainActivity parent){
+        this.parent=parent;
     }
 
     @Override
@@ -46,8 +53,7 @@ public class HomeFragment extends Fragment{
         //Set activities almost complete
         LinearLayout activitiesAlmostComplete = (LinearLayout) root.findViewById(R.id.activities_almost_complete);
         List<RPGuActivity> activities = new ArrayList<RPGuActivity>();
-            activities.add(new RPGuActivity(10, 8, "Running", "Run a mile in my shoes", 10000, "endurance"));
-            activities.add(new RPGuActivity(0, 1, "Running", "Run a mile in my shoes", 10000, "endurance"));
+        activities = parent.loadCurrentActivities();
         ActivitiesInProgressAdapter activitiesInProgressAdapter = new ActivitiesInProgressAdapter(getActivity(),activities);
 
         int activitiesCount = activitiesInProgressAdapter.getCount();
@@ -56,17 +62,27 @@ public class HomeFragment extends Fragment{
         }
 
         //Set the closest skill to leveling up
-        LinearLayout closestSkillToLevel = (LinearLayout) root.findViewById(R.id.skill_closest_to_leveling);
-        Skill closestSkill = new Skill("Wisdom",190);
+        LinearLayout closestSkillLinearLayout = (LinearLayout) root.findViewById(R.id.skill_closest_to_leveling);
+
+        List<Skill> skills = parent.loadSkills();
+
+        Skill closestSkill = null;
+        for(Skill s : skills){
+            if(closestSkill==null){
+                closestSkill = s;
+            }else if(ExperienceFunctions.getExperienceToNextLevel(s.getXP())<ExperienceFunctions.getExperienceToNextLevel(closestSkill.getXP())){
+                closestSkill = s;
+            }
+        }
+
         SkillClosestToLevelingAdapter skillClosestToLevelingAdapter = new SkillClosestToLevelingAdapter(getActivity(),closestSkill);
 
-        closestSkillToLevel.addView(skillClosestToLevelingAdapter.getView(null));
+        closestSkillLinearLayout.addView(skillClosestToLevelingAdapter.getView(null));
 
         //Set activities almost complete
         LinearLayout achievementsAlmostComplete = (LinearLayout) root.findViewById(R.id.achievements_almost_complete);
-        List<RPGuAchievement> achievements = new ArrayList<RPGuAchievement>();
-        achievements.add(new RPGuAchievement(10, 8, "Running", "Run a marathon", 100000, "endurance"));
-        achievements.add(new RPGuAchievement(0, 1, "Running", "Run a marathon", 100000, "endurance"));
+        List<RPGuAchievement> achievements = parent.loadCurrentAchievements();
+
         AchievementsAlmostCompleteAdapter achievementsAlmostCompleteAdapter = new AchievementsAlmostCompleteAdapter(getActivity(),achievements);
 
         int achievementsCount = achievementsAlmostCompleteAdapter.getCount();

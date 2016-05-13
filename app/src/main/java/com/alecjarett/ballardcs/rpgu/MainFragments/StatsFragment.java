@@ -8,12 +8,14 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.alecjarett.ballardcs.rpgu.MainActivity;
 import com.alecjarett.ballardcs.rpgu.R;
 import com.alecjarett.ballardcs.rpgu.Skill;
 import com.alecjarett.ballardcs.rpgu.SkillsListAdapter;
 
 import java.io.LineNumberReader;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Alec Yeasting on 3/31/2016.
@@ -21,9 +23,12 @@ import java.util.ArrayList;
 public class StatsFragment extends Fragment{
 
     private SkillsListAdapter skillsAdapter;
+    private MainActivity parent;
 
-    public StatsFragment() {
-        // Required empty public constructor
+    public StatsFragment(){}
+
+    public void setParentActivity(MainActivity parent){
+        this.parent=parent;
     }
 
     @Override
@@ -38,13 +43,7 @@ public class StatsFragment extends Fragment{
         //Used to find views in fragment_stats
         View root = inflater.inflate(R.layout.fragment_stats, container, false);
 
-        ArrayList<Skill> skills = new ArrayList<Skill>();
-            skills.add(new Skill("Balance",110));
-            skills.add(new Skill("Cooking",310));
-            skills.add(new Skill("Endurance",510));
-            skills.add(new Skill("Flexibility",710));
-            skills.add(new Skill("Strength", 910));
-            skills.add(new Skill("Wisdom",1010));
+        List<Skill> skills = parent.loadSkills();
 
         skillsAdapter = new SkillsListAdapter(getActivity(), skills);
         //TODO: Put skill information into adapter and develop skill information hierarchy
