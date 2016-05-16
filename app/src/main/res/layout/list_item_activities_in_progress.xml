@@ -2,12 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/mainAreaColor">
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/mainAreaColor">
+        android:layout_height="wrap_content">
         <RelativeLayout
             android:layout_width="@dimen/activity_progress_icon_size"
             android:layout_height="@dimen/activity_progress_icon_size"
