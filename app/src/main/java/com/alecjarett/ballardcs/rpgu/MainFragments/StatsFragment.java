@@ -15,7 +15,6 @@ import com.alecjarett.ballardcs.rpgu.Skill;
 import com.alecjarett.ballardcs.rpgu.SkillDetailActivity;
 import com.alecjarett.ballardcs.rpgu.SkillsListAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -54,9 +53,9 @@ public class StatsFragment extends Fragment{
 
                 @Override
                 public void onClick(View v) {
-                    Log.i("hi, ", "skills element " + v.getTag() + " clicked");
+                    Log.i("hi, ", "skills element " + ((Skill)v.getTag()).getSkillLabel() + " clicked");
                     Intent intent = new Intent(getActivity(), SkillDetailActivity.class);
-                    intent.putExtra("Skill", (String) v.getTag());
+                    intent.putExtra("Skill", ((Skill)v.getTag()));
                     startActivity(intent);
                 }
             });

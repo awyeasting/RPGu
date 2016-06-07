@@ -1,9 +1,11 @@
 package com.alecjarett.ballardcs.rpgu;
 
+import java.io.Serializable;
+
 /**
  * Created by Alec Yeasting on 4/29/2016.
  */
-public class Skill {
+public class Skill implements Serializable{
     private String skillLabel;
     private int xp;
 
@@ -14,5 +16,6 @@ public class Skill {
 
     public String getSkillLabel() { return skillLabel; }
     public int getXP() { return xp; }
+
 
 }

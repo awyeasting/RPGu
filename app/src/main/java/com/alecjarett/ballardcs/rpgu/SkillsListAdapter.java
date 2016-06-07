@@ -70,7 +70,7 @@ public class SkillsListAdapter extends ArrayAdapter<Skill> {
 
         progressBar.setProgress((int)(levelProgress*100));
 
-        root.setTag(skill.getSkillLabel());
+        root.setTag(skill);
 
         return root;
     }
