@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.alecjarett.ballardcs.rpgu.ActivitiesAdapter;
+import com.alecjarett.ballardcs.rpgu.MainActivity;
 import com.alecjarett.ballardcs.rpgu.R;
 import com.alecjarett.ballardcs.rpgu.RPGuActivity;
 
@@ -24,8 +25,12 @@ import java.util.ListIterator;
  */
 public class ActivitiesFragment extends Fragment{
 
-    public ActivitiesFragment() {
-        // Required empty public constructor
+    MainActivity parent;
+
+    public ActivitiesFragment(){}
+
+    public void setParentActivity(MainActivity parent){
+        this.parent=parent;
     }
 
     @Override
@@ -49,12 +54,9 @@ public class ActivitiesFragment extends Fragment{
         LinearLayout monthlies = (LinearLayout) root.findViewById(R.id.monthlies_linear_layout);
 
         //Get the lists of activities to load
-        List<RPGuActivity> dailyActivities = new ArrayList<RPGuActivity>();
-            dailyActivities.add(new RPGuActivity(1, 1, "Running", "Run a mile in my shoes", 1000, "endurance"));
-        List<RPGuActivity> weeklyActivities = new ArrayList<RPGuActivity>();
-            weeklyActivities.add(new RPGuActivity(1, 10, "Running", "Run a mile in my shoes", 10000, "endurance"));
-        List<RPGuActivity> monthlyActivities = new ArrayList<RPGuActivity>();
-            monthlyActivities.add(new RPGuActivity(1, 100, "Running", "Run a mile in my shoes", 100000, "endurance"));
+        List<RPGuActivity> dailyActivities = parent.loadCurrentDailies();
+        List<RPGuActivity> weeklyActivities = parent.loadCurrentWeeklies();
+        List<RPGuActivity> monthlyActivities = parent.loadCurrentMonthlies();
 
         //Adapter for the list to the LinearLayout
         ActivitiesAdapter dailiesAdapter = new ActivitiesAdapter(getActivity(), dailyActivities, ActivitiesAdapter.ActivityType.Daily);

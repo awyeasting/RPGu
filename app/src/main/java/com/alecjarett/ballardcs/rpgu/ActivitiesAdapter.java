@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.List;
@@ -71,7 +72,20 @@ public class ActivitiesAdapter extends ArrayAdapter<RPGuActivity> {
 
         ((GradientDrawable)iconBackground.getBackground()).setColor(getContext().getResources().getColor(backgroundColor));
 
-        //TODO: Create progress bars for activities with more than one thing to do
+        if(activity.getQuantityToDo() > 1) {
+            ProgressBar progressBar = (ProgressBar) root.findViewById(R.id.activity_progress_bar);
+            progressBar.setProgress(100 * activity.getQuantityDone() / activity.getQuantityToDo());
+            progressBar.setVisibility(View.VISIBLE);
+
+            TextView quantityDone = (TextView) root.findViewById(R.id.activity_quantity_done);
+            quantityDone.setText(activity.getQuantityDone()+" /");
+            quantityDone.setVisibility(View.VISIBLE);
+
+            TextView quantityToDo = (TextView) root.findViewById(R.id.activity_quantity_to_do);
+            quantityToDo.setText(" " + activity.getQuantityToDo());
+            quantityToDo.setVisibility(View.VISIBLE);
+
+        }
 
         return root;
     }

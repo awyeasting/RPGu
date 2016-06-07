@@ -26,4 +26,8 @@ public class ExperienceFunctions {
         //      experience = 50(level^2 - level)
         return 50 *(level*level - level);
     }
+
+    public static int getExperienceToNextLevel(int experience){
+        return getExperience(getLevel(experience)+1)-experience;
+    }
 }

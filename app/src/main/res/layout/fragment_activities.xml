@@ -9,7 +9,10 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/around_activities_lists_padding">
+        android:paddingTop="@dimen/around_activities_lists_padding"
+        android:paddingLeft="@dimen/around_activities_lists_padding"
+        android:paddingRight="@dimen/around_activities_lists_padding"
+        android:paddingBottom="50dp">
 
         <LinearLayout
             android:layout_width="match_parent"
