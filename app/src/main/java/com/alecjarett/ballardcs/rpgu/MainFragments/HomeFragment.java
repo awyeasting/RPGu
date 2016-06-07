@@ -3,6 +3,7 @@ package com.alecjarett.ballardcs.rpgu.MainFragments;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,13 +28,7 @@ import java.util.List;
  */
 public class HomeFragment extends Fragment{
 
-    private MainActivity parent;
-
     public HomeFragment(){}
-
-    public void setParentActivity(MainActivity parent){
-        this.parent=parent;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,7 +48,7 @@ public class HomeFragment extends Fragment{
         //Set activities almost complete
         LinearLayout activitiesAlmostComplete = (LinearLayout) root.findViewById(R.id.activities_almost_complete);
         List<RPGuActivity> activities = new ArrayList<RPGuActivity>();
-        activities = parent.loadCurrentActivities();
+        activities = ((MainActivity)getActivity()).loadCurrentActivities();
         ActivitiesInProgressAdapter activitiesInProgressAdapter = new ActivitiesInProgressAdapter(getActivity(),activities);
 
         int activitiesCount = activitiesInProgressAdapter.getCount();
@@ -64,7 +59,7 @@ public class HomeFragment extends Fragment{
         //Set the closest skill to leveling up
         LinearLayout closestSkillLinearLayout = (LinearLayout) root.findViewById(R.id.skill_closest_to_leveling);
 
-        List<Skill> skills = parent.loadSkills();
+        List<Skill> skills = ((MainActivity)getActivity()).loadSkills();
 
         Skill closestSkill = null;
         for(Skill s : skills){
@@ -81,7 +76,7 @@ public class HomeFragment extends Fragment{
 
         //Set activities almost complete
         LinearLayout achievementsAlmostComplete = (LinearLayout) root.findViewById(R.id.achievements_almost_complete);
-        List<RPGuAchievement> achievements = parent.loadCurrentAchievements();
+        List<RPGuAchievement> achievements = ((MainActivity)getActivity()).loadCurrentAchievements();
 
         AchievementsAlmostCompleteAdapter achievementsAlmostCompleteAdapter = new AchievementsAlmostCompleteAdapter(getActivity(),achievements);
 

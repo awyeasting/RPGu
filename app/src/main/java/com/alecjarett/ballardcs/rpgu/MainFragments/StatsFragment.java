@@ -24,13 +24,8 @@ import java.util.List;
 public class StatsFragment extends Fragment{
 
     private SkillsListAdapter skillsAdapter;
-    private MainActivity parent;
 
     public StatsFragment(){}
-
-    public void setParentActivity(MainActivity parent){
-        this.parent=parent;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,7 +39,7 @@ public class StatsFragment extends Fragment{
         //Used to find views in fragment_stats
         View root = inflater.inflate(R.layout.fragment_stats, container, false);
 
-        List<Skill> skills = parent.loadSkills();
+        List<Skill> skills = ((MainActivity)getActivity()).loadSkills();
 
         skillsAdapter = new SkillsListAdapter(getActivity(), skills);
         //TODO: Put skill information into adapter and develop skill information hierarchy
@@ -61,7 +56,7 @@ public class StatsFragment extends Fragment{
                 public void onClick(View v) {
                     Log.i("hi, ", "skills element " + v.getTag() + " clicked");
                     Intent intent = new Intent(getActivity(), SkillDetailActivity.class);
-                    intent.putExtra("Skill",(String)v.getTag());
+                    intent.putExtra("Skill", (String) v.getTag());
                     startActivity(intent);
                 }
             });
