@@ -1,18 +1,19 @@
 package com.alecjarett.ballardcs.rpgu.MainFragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 
 import com.alecjarett.ballardcs.rpgu.R;
 import com.alecjarett.ballardcs.rpgu.Skill;
+import com.alecjarett.ballardcs.rpgu.SkillDetailActivity;
 import com.alecjarett.ballardcs.rpgu.SkillsListAdapter;
 
-import java.io.LineNumberReader;
 import java.util.ArrayList;
 
 /**
@@ -54,7 +55,17 @@ public class StatsFragment extends Fragment{
 
         int count = skillsAdapter.getCount();
         for(int i = 0; i < count; i++){
-            skillsLinearLayout.addView(skillsAdapter.getView(i,null,null));
+            skillsLinearLayout.addView(skillsAdapter.getView(i, null, null));
+            skillsLinearLayout.getChildAt(i).setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    Log.i("hi, ", "skills element " + v.getTag() + " clicked");
+                    Intent intent = new Intent(getActivity(), SkillDetailActivity.class);
+                    intent.putExtra("Skill",(String)v.getTag());
+                    startActivity(intent);
+                }
+            });
         }
 
         return root;

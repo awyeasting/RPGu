@@ -71,6 +71,7 @@ public class SkillClosestToLevelingAdapter {
 
         progressBar.setProgress((int)(levelProgress*100));
 
+
         return root;
     }
 

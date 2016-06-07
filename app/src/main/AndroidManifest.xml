@@ -16,6 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".SkillDetailActivity"
+            android:label="@string/detail_page_name">
+        </activity>
     </application>
 
 </manifest>
