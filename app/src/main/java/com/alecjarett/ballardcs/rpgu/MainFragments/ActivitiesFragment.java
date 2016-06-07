@@ -25,13 +25,7 @@ import java.util.ListIterator;
  */
 public class ActivitiesFragment extends Fragment{
 
-    MainActivity parent;
-
     public ActivitiesFragment(){}
-
-    public void setParentActivity(MainActivity parent){
-        this.parent=parent;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,9 +48,9 @@ public class ActivitiesFragment extends Fragment{
         LinearLayout monthlies = (LinearLayout) root.findViewById(R.id.monthlies_linear_layout);
 
         //Get the lists of activities to load
-        List<RPGuActivity> dailyActivities = parent.loadCurrentDailies();
-        List<RPGuActivity> weeklyActivities = parent.loadCurrentWeeklies();
-        List<RPGuActivity> monthlyActivities = parent.loadCurrentMonthlies();
+        List<RPGuActivity> dailyActivities = ((MainActivity)getActivity()).loadCurrentDailies();
+        List<RPGuActivity> weeklyActivities = ((MainActivity)getActivity()).loadCurrentWeeklies();
+        List<RPGuActivity> monthlyActivities = ((MainActivity)getActivity()).loadCurrentMonthlies();
 
         //Adapter for the list to the LinearLayout
         ActivitiesAdapter dailiesAdapter = new ActivitiesAdapter(getActivity(), dailyActivities, ActivitiesAdapter.ActivityType.Daily);

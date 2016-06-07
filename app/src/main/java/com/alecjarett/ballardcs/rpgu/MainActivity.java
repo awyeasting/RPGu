@@ -43,11 +43,8 @@ public class MainActivity extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         HomeFragment homeFragment = new HomeFragment();
-            homeFragment.setParentActivity(this);
         StatsFragment statsFragment = new StatsFragment();
-            statsFragment.setParentActivity(this);
         ActivitiesFragment activitiesFragment = new ActivitiesFragment();
-            activitiesFragment.setParentActivity(this);
 
         adapter.addFragment(homeFragment, "Home");
         adapter.addFragment(statsFragment, "Stats");
