@@ -1,5 +1,7 @@
 package com.alecjarett.ballardcs.rpgu;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -21,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+
+    private List<Skill> skillsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,16 +96,59 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public List<Skill> loadSkills() {
+
         List<Skill> skills = new ArrayList<Skill>();
 
-        skills.add(new Skill("Balance",110));
-        skills.add(new Skill("Cooking",310));
-        skills.add(new Skill("Endurance",510));
-        skills.add(new Skill("Flexibility",710));
-        skills.add(new Skill("Strength", 910));
-        skills.add(new Skill("Wisdom",1010));
+        if(skillsList == null) {
+            SharedPreferences prefs = getSharedPreferences(
+                    getString(R.string.preference_file_key),
+                    Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
 
-        return skills;
+            //Gets the xp value for each skill from shared preferences
+            //      if there's no xp value then put in zero
+            int balanceXP = prefs.getInt("balance_xp", -1);
+            if (balanceXP == -1) {
+                editor.putInt("balance_xp", 0);
+                balanceXP = 0;
+            }
+            int cookingXP = prefs.getInt("cooking_xp", -1);
+            if (cookingXP == -1) {
+                editor.putInt("cooking_xp", 0);
+                cookingXP = 0;
+            }
+            int enduranceXP = prefs.getInt("endurance_xp", -1);
+            if (enduranceXP == -1) {
+                editor.putInt("endurance_xp", 0);
+                enduranceXP = 0;
+            }
+            int flexibilityXP = prefs.getInt("flexibility_xp", -1);
+            if (flexibilityXP == -1) {
+                editor.putInt("flexibility_xp", 0);
+                flexibilityXP = 0;
+            }
+            int strengthXP = prefs.getInt("strength_xp", -1);
+            if (strengthXP == -1) {
+                editor.putInt("strength_xp", 0);
+                strengthXP = 0;
+            }
+            int wisdomXP = prefs.getInt("wisdom_xp", -1);
+            if (wisdomXP == -1) {
+                editor.putInt("wisdom_xp", 0);
+                wisdomXP = 0;
+            }
+
+            //Set the skills values
+            skills.add(new Skill("Balance", balanceXP));
+            skills.add(new Skill("Cooking", cookingXP));
+            skills.add(new Skill("Endurance", enduranceXP));
+            skills.add(new Skill("Flexibility", flexibilityXP));
+            skills.add(new Skill("Strength", strengthXP));
+            skills.add(new Skill("Wisdom", wisdomXP));
+
+            skillsList = skills;
+        }
+        return skillsList;
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {

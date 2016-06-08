@@ -16,4 +16,7 @@
     <string name="active_for_text">Active for</string>
     <string name="active_for_day">Day!</string>
 
+    <!-- Data Storage -->
+    <string name="preference_file_key">com.alecjarett.ballardcs.rpgu.Mmscki2Z1RDWOy35Y1Pi</string>
+
 </resources>
