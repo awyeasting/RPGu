@@ -107,6 +107,19 @@ public class ActivitiesAdapter extends ArrayAdapter<RPGuActivity> {
                     quantityDone.setText(activity.getQuantityDone() + " /");
                     quantityDone.setVisibility(View.VISIBLE);
                 }
+
+                ActivitiesDBHandler dbHandler = new ActivitiesDBHandler(getContext(), null, null, 1);
+                switch (activity.getActivityType()) {
+                    case Daily:
+                        dbHandler.updateDaily(activity.getId(), activity.getQuantityDone());
+                        break;
+                    case Weekly:
+                        dbHandler.updateWeekly(activity.getId(), activity.getQuantityDone());
+                        break;
+                    case Monthly:
+                        dbHandler.updateMonthly(activity.getId(), activity.getQuantityDone());
+                        break;
+                }
             }
         });
 

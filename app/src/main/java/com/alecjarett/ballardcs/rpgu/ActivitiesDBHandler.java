@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -171,11 +172,55 @@ public class ActivitiesDBHandler extends SQLiteOpenHelper{
         values.put(COLUMN_DESCRIPTION, activity.getDescription());
         values.put(COLUMN_XP, activity.getXp());
         values.put(COLUMN_CATEGORYLABEL, activity.getCategoryLabel());
-        values.put(COLUMN_ID, activity.getId());
+        values.put(COLUMN_STRINGID, activity.getId());
 
         SQLiteDatabase db = this.getWritableDatabase();
 
         db.insert(tableName, null, values);
+        db.close();
+    }
+
+    public void updateDaily(String id, int quantityDone) {
+        updateActivityCompletion(id, quantityDone, ActivitiesAdapter.ActivityType.Daily);
+    }
+
+    public void updateWeekly(String id, int quantityDone) {
+        updateActivityCompletion(id, quantityDone, ActivitiesAdapter.ActivityType.Weekly);
+    }
+
+    public void updateMonthly(String id, int quantityDone) {
+        updateActivityCompletion(id, quantityDone, ActivitiesAdapter.ActivityType.Monthly);
+    }
+
+    private void updateActivityCompletion (String id, int quantityDone, ActivitiesAdapter.ActivityType type){
+        String tableName = TABLE_DAILIES;
+        switch (type) {
+            case Daily:
+                tableName = TABLE_DAILIES;
+                break;
+            case Weekly:
+                tableName = TABLE_WEEKLIES;
+                break;
+            case Monthly:
+                tableName = TABLE_MONTHLIES;
+                break;
+        }
+
+        String updateQuery = "UPDATE " + tableName + " SET " + COLUMN_QUANTITYDONE
+                + " = " + quantityDone + " WHERE " + COLUMN_STRINGID
+                + " = \"" + id + "\""  ;
+
+        Log.e("hi,", updateQuery);
+        Log.e("hi,", id + "");
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String strFilter = COLUMN_STRINGID + " = \"" + id + "\"";
+        ContentValues args = new ContentValues();
+        args.put(COLUMN_QUANTITYDONE, quantityDone);
+        db.update(tableName, args, strFilter, null);
+
+        //db.execSQL(updateQuery);
         db.close();
     }
 
