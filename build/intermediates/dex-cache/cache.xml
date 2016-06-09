@@ -1,3 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="H:\RPGu\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="3be474b1b21b31cf2fa93fe6bd641ae108d96452">
+        <dex dex="H:\RPGu\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.2.1_b18093e188719ce39edac021ab36d3fd9ccaedc3.jar" />
+    </item>
+    <item
+        jar="H:\RPGu\app\build\intermediates\exploded-aar\com.android.support\design\23.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="72961d8b453b46e277702f18de9d210bc019e36e">
+        <dex dex="H:\RPGu\app\build\intermediates\pre-dexed\debug\com.android.support-design-23.2.1_5247a31a40e3c8b7409a48271834c739beab58f6.jar" />
+    </item>
+    <item
+        jar="H:\RPGu\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.1\jars\libs\internal_impl-23.2.1.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="607a3d0b8013b4ccbfeb0b7cb293351994e021fb">
+        <dex dex="H:\RPGu\app\build\intermediates\pre-dexed\debug\internal_impl-23.2.1_74d4291a92f24ec791e93f44ea3b9c1fba99a9bd.jar" />
+    </item>
+    <item
+        jar="H:\RPGu\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="e3885783ff8926ed9e2fdcd16816c2e1e73e7aee">
+        <dex dex="H:\RPGu\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-23.2.1_4424e876af6a7a25568b0c63c226195094ffa1ed.jar" />
+    </item>
+    <item
+        jar="H:\RPGu\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="673d77a5bbddd766037f088e775df525c46407f0">
+        <dex dex="H:\RPGu\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-23.2.1_3f9ce096e788009c3d929317d555923fd5b99652.jar" />
+    </item>
+    <item
+        jar="H:\RPGu\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="e4d0cbb0b999604b349062f0214a0a228a7fd151">
+        <dex dex="H:\RPGu\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.2.1_97520be99a32576da27f332798290eb0a8fb5e53.jar" />
+    </item>
+    <item
+        jar="C:\Program Files\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.2.1\support-annotations-23.2.1.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="ccb693bc0774fcb637246f7360de25b4af7df318">
+        <dex dex="H:\RPGu\app\build\intermediates\pre-dexed\debug\support-annotations-23.2.1_b1586d4011af71b3dd83e50b6426f28d39d8c266.jar" />
+    </item>
+    <item
+        jar="H:\RPGu\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="3469cb457f10f74c28cbc05f069b6c894f6cbdd0">
+        <dex dex="H:\RPGu\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-23.2.1_5ee49e240aff553add0f0e3450588d72b1fe6a20.jar" />
+    </item>
+
+</items>
