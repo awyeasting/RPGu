@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
 
     private List<Skill> skillsList;
+    private List<RPGuActivity> dailiesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +72,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public List<RPGuActivity> loadCurrentDailies() {
-        List<RPGuActivity> currentActivities = new ArrayList<RPGuActivity>();
-            currentActivities.add(new RPGuActivity(1, 0, "Running", "Run a mile in my shoes", 10000, "endurance", ActivitiesAdapter.ActivityType.Daily));
-        return currentActivities;
+
+        //If dailies haven't already been loaded then load them
+        if (dailiesList == null) {
+            List<RPGuActivity> dailies = new ArrayList<RPGuActivity>();
+            dailies.add(new RPGuActivity(1, 0, "Running", "Run a mile in my shoes", 10000, "endurance", ActivitiesAdapter.ActivityType.Daily));
+
+            dailiesList = dailies;
+        }
+        return dailiesList;
     }
 
     public List<RPGuActivity> loadCurrentWeeklies() {
@@ -97,9 +104,9 @@ public class MainActivity extends AppCompatActivity {
 
     public List<Skill> loadSkills() {
 
-        List<Skill> skills = new ArrayList<Skill>();
-
         if(skillsList == null) {
+            List<Skill> skills = new ArrayList<Skill>();
+
             SharedPreferences prefs = getSharedPreferences(
                     getString(R.string.preference_file_key),
                     Context.MODE_PRIVATE);

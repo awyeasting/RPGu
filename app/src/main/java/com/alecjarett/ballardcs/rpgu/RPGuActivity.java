@@ -12,15 +12,7 @@ public class RPGuActivity {
     private int xp;
     private String categoryLabel; //skill for activity
     private ActivitiesAdapter.ActivityType activityType;
-
-    public RPGuActivity(int quantityToDo,int quantityDone,String label,String description, int xp, String categoryLabel){
-        this.quantityToDo=quantityToDo;
-        this.quantityDone=quantityDone;
-        this.label=label;
-        this.description=description;
-        this.xp=xp;
-        this.categoryLabel=categoryLabel;
-    }
+    private String id;
 
     public RPGuActivity(int quantityToDo,int quantityDone,String label,String description, int xp, String categoryLabel, ActivitiesAdapter.ActivityType activityType){
         this.quantityToDo=quantityToDo;
@@ -30,6 +22,18 @@ public class RPGuActivity {
         this.xp=xp;
         this.categoryLabel=categoryLabel;
         this.activityType=activityType;
+        this.id = System.currentTimeMillis() + "";
+    }
+
+    public RPGuActivity(int quantityToDo,int quantityDone,String label,String description, int xp, String categoryLabel, ActivitiesAdapter.ActivityType activityType, String id){
+        this.quantityToDo=quantityToDo;
+        this.quantityDone=quantityDone;
+        this.label=label;
+        this.description=description;
+        this.xp=xp;
+        this.categoryLabel=categoryLabel;
+        this.activityType=activityType;
+        this.id =id;
     }
 
     public int getQuantityToDo() { return quantityToDo; }
@@ -39,5 +43,6 @@ public class RPGuActivity {
     public int getXp() { return xp; }
     public String getCategoryLabel() { return categoryLabel; }
     public ActivitiesAdapter.ActivityType getActivityType() { return activityType; }
+    public String getId() { return id; }
 
 }
