@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Skill> skillsList;
     private List<RPGuActivity> dailiesList;
+    private List<RPGuActivity> weekliesList;
+    private List<RPGuActivity> monthliesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +77,18 @@ public class MainActivity extends AppCompatActivity {
 
         //If dailies haven't already been loaded then load them
         if (dailiesList == null) {
-            List<RPGuActivity> dailies = new ArrayList<RPGuActivity>();
-            dailies.add(new RPGuActivity(1, 0, "Running", "Run a mile in my shoes", 10000, "endurance", ActivitiesAdapter.ActivityType.Daily));
+
+            ActivitiesDBHandler dbHandler = new ActivitiesDBHandler(getApplicationContext(), null, null, 1);
+            List<RPGuActivity> dailies = dbHandler.getAllDailies();
+
+            //if there aren't any saved dailies then generate them and save them
+            if(dailies.size() == 0) {
+                dailies.add(new RPGuActivity(1, 0, "Running", "Run a mile in my shoes", 10000, "endurance", ActivitiesAdapter.ActivityType.Daily));
+
+                for(RPGuActivity daily : dailies){
+                    dbHandler.addDaily(daily);
+                }
+            }
 
             dailiesList = dailies;
         }
@@ -84,15 +96,47 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public List<RPGuActivity> loadCurrentWeeklies() {
-        List<RPGuActivity> currentActivities = new ArrayList<RPGuActivity>();
-            currentActivities.add(new RPGuActivity(4, 3, "Running", "Run a mile in my shoes", 10000, "endurance", ActivitiesAdapter.ActivityType.Weekly));
-        return currentActivities;
+
+        //If weeklies haven't already been loaded then load them
+        if (weekliesList == null) {
+
+            ActivitiesDBHandler dbHandler = new ActivitiesDBHandler(getApplicationContext(), null, null, 1);
+            List<RPGuActivity> weeklies = dbHandler.getAllWeeklies();
+
+            //if there aren't any saved dailies then generate them and save them
+            if(weeklies.size() == 0) {
+                weeklies.add(new RPGuActivity(4, 3, "Running", "Run a mile in my shoes", 10000, "endurance", ActivitiesAdapter.ActivityType.Weekly));
+
+                for(RPGuActivity weekly : weeklies){
+                    dbHandler.addWeekly(weekly);
+                }
+            }
+
+            weekliesList = weeklies;
+        }
+        return weekliesList;
     }
 
     public List<RPGuActivity> loadCurrentMonthlies() {
-        List<RPGuActivity> currentActivities = new ArrayList<RPGuActivity>();
-            currentActivities.add(new RPGuActivity(16, 8, "Running", "Run a mile in my shoes", 10000, "endurance", ActivitiesAdapter.ActivityType.Monthly));
-        return currentActivities;
+
+        //If monthlies haven't already been loaded then load them
+        if (monthliesList == null) {
+
+            ActivitiesDBHandler dbHandler = new ActivitiesDBHandler(getApplicationContext(), null, null, 1);
+            List<RPGuActivity> monthlies = dbHandler.getAllMonthlies();
+
+            //if there aren't any saved dailies then generate them and save them
+            if(monthlies.size() == 0) {
+                monthlies.add(new RPGuActivity(16, 8, "Running", "Run a mile in my shoes", 10000, "endurance", ActivitiesAdapter.ActivityType.Monthly));
+
+                for(RPGuActivity monthly : monthlies){
+                    dbHandler.addMonthly(monthly);
+                }
+            }
+
+            monthliesList = monthlies;
+        }
+        return monthliesList;
     }
 
     public List<RPGuAchievement> loadCurrentAchievements() {
