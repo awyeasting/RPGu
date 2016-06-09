@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private List<RPGuActivity> dailiesList;
     private List<RPGuActivity> weekliesList;
     private List<RPGuActivity> monthliesList;
+    private List<RPGuAchievement> achievementsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
         //If dailies haven't already been loaded then load them
         if (dailiesList == null) {
 
-            ActivitiesDBHandler dbHandler = new ActivitiesDBHandler(getApplicationContext(), null, null, 1);
+            ActivitiesDBHandler dbHandler =
+                    new ActivitiesDBHandler(getApplicationContext(), null, null, 1);
             List<RPGuActivity> dailies = dbHandler.getAllDailies();
 
             //if there aren't any saved dailies then generate them and save them
@@ -101,7 +103,8 @@ public class MainActivity extends AppCompatActivity {
         //If weeklies haven't already been loaded then load them
         if (weekliesList == null) {
 
-            ActivitiesDBHandler dbHandler = new ActivitiesDBHandler(getApplicationContext(), null, null, 1);
+            ActivitiesDBHandler dbHandler =
+                    new ActivitiesDBHandler(getApplicationContext(), null, null, 1);
             List<RPGuActivity> weeklies = dbHandler.getAllWeeklies();
 
             //if there aren't any saved dailies then generate them and save them
@@ -123,7 +126,8 @@ public class MainActivity extends AppCompatActivity {
         //If monthlies haven't already been loaded then load them
         if (monthliesList == null) {
 
-            ActivitiesDBHandler dbHandler = new ActivitiesDBHandler(getApplicationContext(), null, null, 1);
+            ActivitiesDBHandler dbHandler =
+                    new ActivitiesDBHandler(getApplicationContext(), null, null, 1);
             List<RPGuActivity> monthlies = dbHandler.getAllMonthlies();
 
             //if there aren't any saved dailies then generate them and save them
@@ -141,10 +145,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public List<RPGuAchievement> loadCurrentAchievements() {
-        List<RPGuAchievement> currentAchievements = new ArrayList<RPGuAchievement>();
-            currentAchievements.add(new RPGuAchievement(10, 8, "Running", "Run a marathon", 100000, "endurance"));
-            currentAchievements.add(new RPGuAchievement(1, 0, "Running", "Run a marathon", 100000, "endurance"));
-        return currentAchievements;
+
+        //If achievements haven't already been loaded then load them
+        if (achievementsList == null) {
+
+            AchievementsDBHandler dbHandler =
+                    new AchievementsDBHandler(getApplicationContext(), null, null, 1);
+            List<RPGuAchievement> achievements = dbHandler.getAllAchievements();
+
+            //if there aren't any saved achievements then generate them and save them
+            if(achievements.size() == 0) {
+                achievements.add(new RPGuAchievement(10, 8, "Running", "Run a marathon", 100000, "endurance"));
+                achievements.add(new RPGuAchievement(1, 0, "Running", "Run a marathon", 100000, "endurance"));
+
+                for(RPGuAchievement achievement : achievements){
+                    dbHandler.addAchievement(achievement);
+                }
+            }
+            achievementsList = achievements;
+        }
+        return achievementsList;
     }
 
     public List<Skill> loadSkills() {
