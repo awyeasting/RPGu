@@ -36,6 +36,9 @@ public class RPGuActivity {
         this.id =id;
     }
 
+    public void increaseQuantityDone(){
+        quantityDone++;
+    }
     public int getQuantityToDo() { return quantityToDo; }
     public int getQuantityDone() { return quantityDone; }
     public String getLabel() { return label; }

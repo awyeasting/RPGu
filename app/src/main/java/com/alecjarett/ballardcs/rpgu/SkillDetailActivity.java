@@ -31,7 +31,7 @@ public class SkillDetailActivity extends AppCompatActivity {
         skillName.setText(skill.getSkillLabel());
 
         TextView currentLevelAndLevelTitle = (TextView) findViewById(R.id.detail_page_level_and_level_title);
-        currentLevelAndLevelTitle.setText("Level " + ExperienceFunctions.getLevel(skill.getXP()) + " Novice");
+        currentLevelAndLevelTitle.setText("Level " + ExperienceFunctions.getLevel(skill.getXP()) + ((MainActivity)getParent()).getLevelTitle(ExperienceFunctions.getLevel(skill.getXP())));
 
         TextView xp = (TextView) findViewById(R.id.detail_page_xp);
         xp.setText("XP: " + skill.getXP());

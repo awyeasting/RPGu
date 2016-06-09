@@ -1,15 +1,15 @@
 package com.alecjarett.ballardcs.rpgu;
 
 import android.app.Activity;
-import android.content.res.Resources;
 import android.graphics.drawable.GradientDrawable;
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -28,7 +28,7 @@ public class ActivitiesAdapter extends ArrayAdapter<RPGuActivity> {
     }
 
     public View getView(int position, View convertView, ViewGroup parent){
-        RPGuActivity activity = getItem(position);
+        final RPGuActivity activity = getItem(position);
         View root = LayoutInflater.from(getContext()).inflate(R.layout.list_item_activity, parent, false);
 
         //Set the activity category text
@@ -57,6 +57,8 @@ public class ActivitiesAdapter extends ArrayAdapter<RPGuActivity> {
 
         View iconBackground = root.findViewById(R.id.activity_icon_circle);
 
+
+
         int backgroundColor;
         switch (activityType){
             case Weekly:
@@ -71,6 +73,42 @@ public class ActivitiesAdapter extends ArrayAdapter<RPGuActivity> {
         }
 
         ((GradientDrawable)iconBackground.getBackground()).setColor(getContext().getResources().getColor(backgroundColor));
+
+        Button activityButton = (Button) root.findViewById(R.id.activity_button);
+        int activityActionsToDo = activity.getQuantityToDo() - activity.getQuantityDone();
+        if(activityActionsToDo == 1){
+            activityButton.setText("Finish");
+        }else{
+            activityButton.setText("+");
+        }
+        activityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Button activityButton = (Button) v.findViewById(R.id.activity_button);
+                int activityActionsToDo = activity.getQuantityToDo() - activity.getQuantityDone();
+
+                if(activityActionsToDo >=1){
+                    activity.increaseQuantityDone();
+                }
+                activityActionsToDo = activity.getQuantityToDo() - activity.getQuantityDone();
+                if(activityActionsToDo == 0){
+                    activityButton.setText("Done");
+                    activityButton.setEnabled(false);
+                }else if(activityActionsToDo == 1){
+                    activityButton.setText("Finish");
+                }else{
+                    activityButton.setText("+");
+                }
+                if(activity.getQuantityToDo() > 1) {
+                    ProgressBar progressBar = (ProgressBar) ((LinearLayout) (v.getParent().getParent().getParent())).findViewById(R.id.activity_progress_bar);
+                    progressBar.setProgress(100 * activity.getQuantityDone() / activity.getQuantityToDo());
+                    progressBar.setVisibility(View.VISIBLE);
+                    TextView quantityDone = (TextView) ((LinearLayout) (v.getParent().getParent().getParent())).findViewById(R.id.activity_quantity_done);
+                    quantityDone.setText(activity.getQuantityDone() + " /");
+                    quantityDone.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
         if(activity.getQuantityToDo() > 1) {
             ProgressBar progressBar = (ProgressBar) root.findViewById(R.id.activity_progress_bar);

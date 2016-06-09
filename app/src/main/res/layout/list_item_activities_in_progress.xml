@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:padding="@dimen/padding_around_list_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/mainAreaColor">
@@ -9,10 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RelativeLayout
-            android:layout_width="@dimen/activity_progress_icon_size"
-            android:layout_height="@dimen/activity_progress_icon_size"
-            android:padding="@dimen/padding_around_item_icon"
-            android:background="@color/mainAreaColor">
+            android:layout_width="@dimen/activity_icon_size"
+            android:layout_height="@dimen/activity_icon_size">
             <View
                 android:id="@+id/activity_icon_circle"
                 android:layout_width="match_parent"
@@ -32,7 +31,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/mainAreaColor"
-            android:paddingTop="10dp">
+            android:paddingTop="10dp"
+            android:paddingLeft="@dimen/padding_left_of_label">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -43,16 +43,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Running"
-                    android:textSize="20dp"
+                    android:textSize="@dimen/activity_label_text_size"
                     android:textColor="@color/textColorSecondary"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:layout_weight="1"/>
                 <TextView
                     android:id="@+id/activity_xp_gain"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:text="+200000xp"
-                    android:textSize="14dp"/>
+                    android:text="+manyxp"
+                    android:textSize="@dimen/activity_xp_text_size"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -64,11 +64,11 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Run a mile in my shoes"
-                    android:textSize="15dp"
                     android:textColor="@color/textColorSecondary"
-                    android:paddingTop="10dp"
-                    android:gravity="center"
-                    android:paddingBottom="10dp"/>
+                    android:paddingTop="@dimen/padding_between_desc_label"
+                    android:textSize="@dimen/activity_desc_text_size"
+                    android:gravity="left"
+                    />
                 <TextView
                     android:id="@+id/activity_quantity_done"
                     android:layout_width="wrap_content"
