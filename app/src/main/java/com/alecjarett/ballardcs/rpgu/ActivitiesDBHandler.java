@@ -206,13 +206,6 @@ public class ActivitiesDBHandler extends SQLiteOpenHelper{
                 break;
         }
 
-        String updateQuery = "UPDATE " + tableName + " SET " + COLUMN_QUANTITYDONE
-                + " = " + quantityDone + " WHERE " + COLUMN_STRINGID
-                + " = \"" + id + "\""  ;
-
-        Log.e("hi,", updateQuery);
-        Log.e("hi,", id + "");
-
         SQLiteDatabase db = this.getWritableDatabase();
 
         String strFilter = COLUMN_STRINGID + " = \"" + id + "\"";
@@ -220,7 +213,6 @@ public class ActivitiesDBHandler extends SQLiteOpenHelper{
         args.put(COLUMN_QUANTITYDONE, quantityDone);
         db.update(tableName, args, strFilter, null);
 
-        //db.execSQL(updateQuery);
         db.close();
     }
 
@@ -250,7 +242,8 @@ public class ActivitiesDBHandler extends SQLiteOpenHelper{
                 break;
         }
 
-        String query = "Select * FROM " + tableName + " WHERE " + COLUMN_STRINGID + " = \"" + id + "\"";
+        String query = "Select * FROM " + tableName
+                + " WHERE " + COLUMN_STRINGID + " = \"" + id + "\"";
         SQLiteDatabase db = this.getWritableDatabase();
 
         Cursor cursor = db.rawQuery(query, null);

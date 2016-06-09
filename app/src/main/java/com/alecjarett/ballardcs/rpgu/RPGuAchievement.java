@@ -11,6 +11,7 @@ public class RPGuAchievement {
     private String description;
     private int xp;
     private String categoryLabel; //skill for achievement
+    private String id;
 
     public RPGuAchievement(int quantityToDo, int quantityDone, String label, String description, int xp, String categoryLabel){
         this.quantityToDo=quantityToDo;
@@ -19,6 +20,17 @@ public class RPGuAchievement {
         this.description=description;
         this.xp=xp;
         this.categoryLabel=categoryLabel;
+        this.id = System.currentTimeMillis() + "";
+    }
+
+    public RPGuAchievement(int quantityToDo, int quantityDone, String label, String description, int xp, String categoryLabel, String id){
+        this.quantityToDo=quantityToDo;
+        this.quantityDone=quantityDone;
+        this.label=label;
+        this.description=description;
+        this.xp=xp;
+        this.categoryLabel=categoryLabel;
+        this.id=id;
     }
 
     public int getQuantityToDo() { return quantityToDo; }
@@ -27,5 +39,5 @@ public class RPGuAchievement {
     public String getDescription() { return description; }
     public int getXp() { return xp; }
     public String getCategoryLabel() { return categoryLabel; }
-
+    public String getId() { return id; }
 }
