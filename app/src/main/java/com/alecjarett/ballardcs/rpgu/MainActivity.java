@@ -1,5 +1,7 @@
 package com.alecjarett.ballardcs.rpgu;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -14,6 +16,7 @@ import com.alecjarett.ballardcs.rpgu.MainFragments.HomeFragment;
 import com.alecjarett.ballardcs.rpgu.MainFragments.StatsFragment;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -99,9 +102,72 @@ public class MainActivity extends AppCompatActivity {
         skills.add(new Skill("Endurance",510));
         skills.add(new Skill("Flexibility",710));
         skills.add(new Skill("Strength", 910));
-        skills.add(new Skill("Wisdom",1010));
+        skills.add(new Skill("Wisdom", 1010));
 
         return skills;
+    }
+
+    public int getDate() {
+        Calendar c = Calendar.getInstance();
+        return ((int)c.getTimeInMillis())*1000*60*60*24;
+    }
+
+    public int getDaysActive(){
+        SharedPreferences prefs = getSharedPreferences(
+                getString(R.string.preference_file_key),
+                Context.MODE_PRIVATE);
+        return 1;
+        //logic of this method is unfinished
+    }
+
+    public void saveDayAsActive(){
+        int currentDate = getDate();
+        SharedPreferences prefs = getSharedPreferences(
+                getString(R.string.preference_file_key),
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        if(prefs.getInt("first_date_active", 0) == 0) {
+            editor.putInt("first_date_active", currentDate);
+            editor.putInt("last_date_active", currentDate);
+        }else{
+            editor.putInt("last_date_active", currentDate);
+        }
+        if(prefs.getInt("last_date_active", 1) - prefs.getInt("first_day_active",0) > 1){
+            editor.putInt("first_date_active", currentDate);
+        }
+        //logic of this method is unfinished
+        editor.commit();
+    }
+
+
+
+    public static String getLevelTitle(int level){
+        int levelValue = (int)(Math.ceil(((double)level)/10));
+        switch (levelValue) {
+            case 1:
+                return "Novice";
+            case 2:
+                return "Apprentice";
+            case 3:
+                return "Initiate";
+            case 4:
+                return "Journeyman";
+            case 5:
+                return "Adept";
+            case 6:
+                return "Master";
+            case 7:
+                return "Grandmaster";
+            case 8:
+                return "Legend";
+            case 9:
+                return "Exalted";
+            case 10:
+                return "Transcendent";
+            default:
+                return "error!";
+
+        }
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {

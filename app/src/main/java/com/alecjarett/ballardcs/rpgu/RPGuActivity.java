@@ -32,6 +32,9 @@ public class RPGuActivity {
         this.activityType=activityType;
     }
 
+    public void increaseQuantityDone(){
+        quantityDone++;
+    }
     public int getQuantityToDo() { return quantityToDo; }
     public int getQuantityDone() { return quantityDone; }
     public String getLabel() { return label; }

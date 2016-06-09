@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:background="@color/mainAreaColor"
+    android:padding="@dimen/padding_around_list_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -11,10 +12,8 @@
         android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:layout_width="@dimen/achievement_progress_icon_size"
-            android:background="@color/mainAreaColor"
-            android:padding="@dimen/padding_around_item_icon"
-            android:layout_height="@dimen/achievement_progress_icon_size">
+            android:layout_width="@dimen/activity_icon_size"
+            android:layout_height="@dimen/activity_icon_size">
             <View
                 android:id="@+id/achievement_icon_circle"
                 android:layout_width="match_parent"
@@ -35,7 +34,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/mainAreaColor"
-            android:paddingTop="10dp">
+            android:paddingTop="10dp"
+            android:paddingLeft="@dimen/padding_left_of_label">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -46,17 +46,17 @@
                     android:id="@+id/achievement_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="AchievementTitle"
-                    android:textSize="20dp"
+                    android:text="Running"
+                    android:textSize="@dimen/activity_label_text_size"
                     android:textColor="@color/textColorSecondary"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:layout_weight="1"/>
                 <TextView
                     android:id="@+id/achievement_xp_gain"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="+manyxp"
-                    android:textSize="14dp"/>
+                    android:textSize="@dimen/activity_xp_text_size"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -67,19 +67,18 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="do dis achievement"
-                    android:textSize="15dp"
+                    android:text="Run a mile in my shoes"
+                    android:textSize="17dp"
                     android:textColor="@color/textColorSecondary"
                     android:paddingTop="10dp"
-                    android:gravity="center"
-                    android:paddingBottom="10dp"/>
+                    android:gravity="left"/>
                 <TextView
                     android:id="@+id/achievement_quantity_done"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="10 / "
                     android:textColor="@color/textColorSecondary"
-                    android:visibility="gone"/>
+                    android:visibility="invisible"/>
                 <TextView
                     android:id="@+id/achievement_quantity_to_do"
                     android:layout_width="wrap_content"
@@ -88,7 +87,7 @@
                     android:paddingRight="20dp"
                     android:textColor="@color/textColorSecondary"
                     android:gravity="center"
-                    android:visibility="gone"/>
+                    android:visibility="invisible"/>
 
             </LinearLayout>
             <ProgressBar

@@ -3,14 +3,13 @@ package com.alecjarett.ballardcs.rpgu.MainFragments;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.alecjarett.ballardcs.rpgu.AchievementsAlmostCompleteAdapter;
-import com.alecjarett.ballardcs.rpgu.ActivitiesAdapter;
 import com.alecjarett.ballardcs.rpgu.ActivitiesInProgressAdapter;
 import com.alecjarett.ballardcs.rpgu.ExperienceFunctions;
 import com.alecjarett.ballardcs.rpgu.MainActivity;
@@ -44,6 +43,9 @@ public class HomeFragment extends Fragment{
         //Set days active circle color
         View daysActiveCircle = root.findViewById(R.id.days_active_circle);
         ((GradientDrawable)daysActiveCircle.getBackground()).setColor(getContext().getResources().getColor(R.color.colorPrimary));
+
+        TextView activeFor = (TextView)root.findViewById(R.id.active_for_days_number);
+        activeFor.setText("" + ((MainActivity)getActivity()).getDaysActive());
 
         //Set activities almost complete
         LinearLayout activitiesAlmostComplete = (LinearLayout) root.findViewById(R.id.activities_almost_complete);

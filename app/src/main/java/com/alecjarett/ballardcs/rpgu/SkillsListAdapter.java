@@ -49,11 +49,11 @@ public class SkillsListAdapter extends ArrayAdapter<Skill> {
 
         //Set the level number text
         TextView levelLabel = (TextView) root.findViewById(R.id.level_signifier_text);
-        levelLabel.setText("Level: " + skillLevel);
+        levelLabel.setText("Level " + skillLevel + " " + ((MainActivity)getContext()).getLevelTitle(skillLevel));
 
         //Set the exp to next level text
         TextView expToNextLevel = (TextView) root.findViewById(R.id.experience_to_next_level);
-        expToNextLevel.setText(nextLevelXP-currentXP + " xp to go");
+        expToNextLevel.setText(nextLevelXP-currentXP + " XP to go");
 
         //Set current level text
         TextView currentLevel = (TextView) root.findViewById(R.id.current_level_progress);
