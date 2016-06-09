@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
             //if there aren't any saved dailies then generate them and save them
             if(dailies.size() == 0) {
-                dailies.add(new RPGuActivity(1, 0, "Running", "Run a mile in my shoes", 10000, "endurance", ActivitiesAdapter.ActivityType.Daily));
+                dailies.add(new RPGuActivity(1, 0, "Running", "Run a mile in my shoes.", 10000, "endurance", ActivitiesAdapter.ActivityType.Daily));
 
                 for(RPGuActivity daily : dailies){
                     dbHandler.addDaily(daily);
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
             //if there aren't any saved dailies then generate them and save them
             if(weeklies.size() == 0) {
-                weeklies.add(new RPGuActivity(4, 3, "Running", "Run a mile in my shoes", 10000, "endurance", ActivitiesAdapter.ActivityType.Weekly));
+                weeklies.add(new RPGuActivity(4, 3, "Running", "Run a mile in my shoes.", 10000, "endurance", ActivitiesAdapter.ActivityType.Weekly));
 
                 for(RPGuActivity weekly : weeklies){
                     dbHandler.addWeekly(weekly);
@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
 
             //if there aren't any saved dailies then generate them and save them
             if(monthlies.size() == 0) {
-                monthlies.add(new RPGuActivity(16, 8, "Running", "Run a mile in my shoes", 10000, "endurance", ActivitiesAdapter.ActivityType.Monthly));
+                monthlies.add(new RPGuActivity(16, 8, "Running", "Run a mile in my shoes.", 10000, "endurance", ActivitiesAdapter.ActivityType.Monthly));
 
                 for(RPGuActivity monthly : monthlies){
                     dbHandler.addMonthly(monthly);
@@ -212,8 +212,11 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences(
                 getString(R.string.preference_file_key),
                 Context.MODE_PRIVATE);
-        return 1;
-        //logic of this method is unfinished
+        int daysActive = prefs.getInt("last_date_active", 1) - prefs.getInt("first_date_active", 0);
+        if(daysActive == 0){
+            daysActive = 1;
+        }
+        return daysActive;
     }
 
     public void saveDayAsActive(){
@@ -224,14 +227,16 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = prefs.edit();
         if(prefs.getInt("first_date_active", 0) == 0) {
             editor.putInt("first_date_active", currentDate);
+            editor.putInt("prev_date_active", currentDate);
             editor.putInt("last_date_active", currentDate);
         }else{
             editor.putInt("last_date_active", currentDate);
         }
-        if(prefs.getInt("last_date_active", 1) - prefs.getInt("first_day_active",0) > 1){
+        if(prefs.getInt("last_date_active", 1) - prefs.getInt("prev_day_active",0) != 1 && prefs.getInt("last_date_active", 1) - prefs.getInt("prev_day_active",0) != 0){
             editor.putInt("first_date_active", currentDate);
+            editor.putInt("prev_date_active", currentDate);
+            editor.putInt("last_date_active", currentDate);
         }
-        //logic of this method is unfinished
         editor.commit();
     }
 
