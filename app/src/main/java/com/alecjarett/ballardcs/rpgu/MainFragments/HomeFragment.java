@@ -74,6 +74,7 @@ public class HomeFragment extends Fragment{
             activitiesAlmostComplete.addView(activitiesInProgressAdapter.getView(i, null, null));
         }
 
+
         //Set the closest skill to leveling up
         LinearLayout closestSkillLinearLayout = (LinearLayout) root.findViewById(R.id.skill_closest_to_leveling);
 
