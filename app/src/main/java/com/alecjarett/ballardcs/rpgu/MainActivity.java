@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
 import com.alecjarett.ballardcs.rpgu.MainFragments.ActivitiesFragment;
 import com.alecjarett.ballardcs.rpgu.MainFragments.HomeFragment;
@@ -310,6 +311,33 @@ public class MainActivity extends AppCompatActivity {
         return skillsList;
     }
 
+    public boolean addXPToSkill(String skillName, int xp){
+        SharedPreferences prefs = getSharedPreferences(
+                getString(R.string.preference_file_key),
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        int oldXP;
+
+        try {
+            oldXP = prefs.getInt(skillName.toLowerCase() + "_xp", -1);
+            if(oldXP != -1) {
+                for (int i = 0; i < skillsList.size(); i++) {
+                    if (skillsList.get(i).getSkillLabel().toLowerCase().equals(skillName.toLowerCase())) {
+                        skillsList.add(new Skill(skillsList.get(i).getSkillLabel(), oldXP + xp));
+                        skillsList.remove(i);
+                        editor.putInt(skillName.toLowerCase() + "_xp", oldXP + xp);
+                        return true;
+                    }
+                }
+            } else {
+                Log.e("hi,", "Invalid skillName input in addXPToSkill");
+            }
+        } catch (Exception e) {
+            Log.e("hi,", "Error in addXPToSkill");
+        }
+        return false;
+    }
 
     public static int daysBetween(Calendar startDate, Calendar endDate) {
         long start = startDate.getTimeInMillis();
@@ -361,7 +389,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.commit();
             }else if(daysBetweenTodayAndLastActiveDay > 1)
                 editor.putLong("first_date_active", currentDate);
-                editor.putLong("last_date_active", currentDate);
+            editor.putLong("last_date_active", currentDate);
                 editor.commit();
             }
 
