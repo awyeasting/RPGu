@@ -76,6 +76,9 @@ public class ActivitiesAdapter extends ArrayAdapter<RPGuActivity> {
         int activityActionsToDo = activity.getQuantityToDo() - activity.getQuantityDone();
         if(activityActionsToDo == 1){
             activityButton.setText("Finish");
+        }else if(activityActionsToDo == 0){
+            activityButton.setText("Done");
+            activityButton.setEnabled(false);
         }else{
             activityButton.setText("+");
         }
@@ -84,19 +87,10 @@ public class ActivitiesAdapter extends ArrayAdapter<RPGuActivity> {
             public void onClick(View v) {
                 Button activityButton = (Button) v.findViewById(R.id.activity_button);
                 int activityActionsToDo = activity.getQuantityToDo() - activity.getQuantityDone();
-
-                if(activityActionsToDo >=1){
+                if(activityActionsToDo>=1){
                     activity.increaseQuantityDone();
                 }
-                activityActionsToDo = activity.getQuantityToDo() - activity.getQuantityDone();
-                if(activityActionsToDo == 0){
-                    activityButton.setText("Done");
-                    activityButton.setEnabled(false);
-                }else if(activityActionsToDo == 1){
-                    activityButton.setText("Finish");
-                }else{
-                    activityButton.setText("+");
-                }
+
                 if(activity.getQuantityToDo() > 1) {
                     ProgressBar progressBar = (ProgressBar) ((LinearLayout) (v.getParent().getParent().getParent())).findViewById(R.id.activity_progress_bar);
                     progressBar.setProgress(100 * activity.getQuantityDone() / activity.getQuantityToDo());
@@ -117,6 +111,15 @@ public class ActivitiesAdapter extends ArrayAdapter<RPGuActivity> {
                     case Monthly:
                         dbHandler.updateMonthly(activity.getId(), activity.getQuantityDone());
                         break;
+                }
+                activityActionsToDo = activity.getQuantityToDo() - activity.getQuantityDone();
+                if(activityActionsToDo == 0){
+                    activityButton.setText("Done");
+                    activityButton.setEnabled(false);
+                }else if(activityActionsToDo == 1){
+                    activityButton.setText("Finish");
+                }else{
+                    activityButton.setText("+");
                 }
                 ((MainActivity)getContext()).saveDayAsActive();
             }
