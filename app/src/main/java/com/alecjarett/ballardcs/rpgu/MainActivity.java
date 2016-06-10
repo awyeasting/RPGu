@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
             int xp = 0;
             String categoryLabel = skill.getSkillLabel();
 
-            switch (skill.getSkillLabel()) {
+            switch (skill.getSkillLabel().toLowerCase()) {
                 case "balance":
                     label = "Single Leg Deadlift";
                     description = "Do 6 single leg deadlifts";
