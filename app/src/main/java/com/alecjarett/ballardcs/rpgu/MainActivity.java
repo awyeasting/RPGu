@@ -65,11 +65,16 @@ public class MainActivity extends AppCompatActivity {
     public List<RPGuActivity> loadCurrentActivities() {
         List<RPGuActivity> currentActivities = new ArrayList<RPGuActivity>();
 
-        for(RPGuActivity activity : loadCurrentDailies())
+        List<RPGuActivity> dailies = loadCurrentDailies();
+        for(RPGuActivity activity : dailies)
             currentActivities.add(activity);
-        for(RPGuActivity activity : loadCurrentWeeklies())
+
+        List<RPGuActivity> weeklies = loadCurrentWeeklies();
+        for(RPGuActivity activity : weeklies)
             currentActivities.add(activity);
-        for(RPGuActivity activity : loadCurrentMonthlies())
+
+        List<RPGuActivity> monthlies = loadCurrentMonthlies();
+        for(RPGuActivity activity : monthlies)
             currentActivities.add(activity);
 
         return currentActivities;
@@ -86,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
             //if there aren't any saved dailies then generate them and save them
             if(dailies.size() == 0) {
-                dailies.add(new RPGuActivity(1, 0, "Running", "Run a mile in my shoes.", 10000, "endurance", ActivitiesAdapter.ActivityType.Daily));
+                dailies = generateActivities(loadSkills(), ActivitiesAdapter.ActivityType.Daily);
 
                 for(RPGuActivity daily : dailies){
                     dbHandler.addDaily(daily);
@@ -109,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
             //if there aren't any saved dailies then generate them and save them
             if(weeklies.size() == 0) {
-                weeklies.add(new RPGuActivity(4, 3, "Running", "Run a mile in my shoes.", 10000, "endurance", ActivitiesAdapter.ActivityType.Weekly));
+                weeklies = generateActivities(loadSkills(), ActivitiesAdapter.ActivityType.Weekly);
 
                 for(RPGuActivity weekly : weeklies){
                     dbHandler.addWeekly(weekly);
@@ -132,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
             //if there aren't any saved dailies then generate them and save them
             if(monthlies.size() == 0) {
-                monthlies.add(new RPGuActivity(16, 8, "Running", "Run a mile in my shoes.", 10000, "endurance", ActivitiesAdapter.ActivityType.Monthly));
+                monthlies = generateActivities(loadSkills(), ActivitiesAdapter.ActivityType.Monthly);
 
                 for(RPGuActivity monthly : monthlies){
                     dbHandler.addMonthly(monthly);
@@ -142,6 +147,78 @@ public class MainActivity extends AppCompatActivity {
             monthliesList = monthlies;
         }
         return monthliesList;
+    }
+
+
+    public List<RPGuActivity> generateActivities(List<Skill> skills, ActivitiesAdapter.ActivityType type) {
+
+        List<RPGuActivity> activities = new ArrayList<RPGuActivity>();
+
+        for(Skill skill : skills) {
+
+            int quantity = 1;
+
+            switch (type) {
+                case Daily:
+                    quantity = 1;
+                    break;
+                case Weekly:
+                    //Generate a quantity from 3-5
+                    quantity = 3 + (int)Math.floor(Math.random()*3);
+                    break;
+                case Monthly:
+                    //Generate a quantity from 7-11
+                    quantity = 7 + (int)Math.floor(Math.random()*5);
+                    break;
+            }
+
+            String label = "";
+            String description = "";
+            int xp = 0;
+            String categoryLabel = skill.getSkillLabel();
+
+            switch (skill.getSkillLabel()) {
+                case "balance":
+                    label = "Single Leg Deadlift";
+                    description = "Do 6 single leg deadlifts";
+                    break;
+                case "cooking":
+                    label = "Baking";
+                    description = "Bake a cake";
+                    break;
+                case "endurance":
+                    label = "Running";
+                    description = "Run a mile";
+                    break;
+                case "flexibility":
+                    label = "Stretching";
+                    description = "Do a standing forward bend";
+                    break;
+                case "strength":
+                    label = "Lifting";
+                    description = "Lift 10 lb weights until failure";
+                    break;
+                case "wisdom":
+                    label = "Reading";
+                    if(quantity == 1) {
+                        description = "Read a world news article";
+                    }else if(quantity < 6){
+                        description = "Read a 100+ page book";
+                    }else {
+                        description = "Read a 200+ page book";
+                    }
+                    break;
+            }
+
+            xp = (int)(110 * Math.pow((quantity), 2));
+            if(skill.getSkillLabel().equals("wisdom")){
+                quantity = 1;
+            }
+
+            activities.add(new RPGuActivity(quantity, 0, label, description, xp, categoryLabel, type));
+        }
+
+        return activities;
     }
 
     public List<RPGuAchievement> loadCurrentAchievements() {
@@ -155,8 +232,7 @@ public class MainActivity extends AppCompatActivity {
 
             //if there aren't any saved achievements then generate them and save them
             if(achievements.size() == 0) {
-                achievements.add(new RPGuAchievement(10, 8, "Running", "Run a marathon", 100000, "endurance"));
-                achievements.add(new RPGuAchievement(1, 0, "Running", "Run a marathon", 100000, "endurance"));
+                achievements = generateBaseAchievements();
 
                 for(RPGuAchievement achievement : achievements){
                     dbHandler.addAchievement(achievement);
@@ -165,6 +241,17 @@ public class MainActivity extends AppCompatActivity {
             achievementsList = achievements;
         }
         return achievementsList;
+    }
+
+    private List<RPGuAchievement> generateBaseAchievements() {
+        List<RPGuAchievement> achievements = new ArrayList<RPGuAchievement>();
+
+        //TODO: generate achievements
+
+        achievements.add(new RPGuAchievement(10, 8, "Running", "Run a marathon", 100000, "endurance"));
+        achievements.add(new RPGuAchievement(1, 0, "Running", "Run a marathon", 100000, "endurance"));
+
+        return achievements;
     }
 
     public List<Skill> loadSkills() {
