@@ -60,12 +60,20 @@ public class HomeFragment extends Fragment{
         LinearLayout activitiesAlmostComplete = (LinearLayout) root.findViewById(R.id.activities_almost_complete);
         List<RPGuActivity> activities = new ArrayList<RPGuActivity>();
         activities = ((MainActivity)getActivity()).loadCurrentActivities();
-        ActivitiesInProgressAdapter activitiesInProgressAdapter = new ActivitiesInProgressAdapter(getActivity(),activities);
+
+        // Filter out the activities that aren't in progress
+        List<RPGuActivity> inProgressActivities = new ArrayList<RPGuActivity>();
+        for (RPGuActivity activity : activities){
+            if(activity.getQuantityDone() > 0)
+                inProgressActivities.add(activity);
+        }
+        ActivitiesInProgressAdapter activitiesInProgressAdapter = new ActivitiesInProgressAdapter(getActivity(),inProgressActivities);
 
         int activitiesCount = activitiesInProgressAdapter.getCount();
         for(int i = 0; i < activitiesCount; i++){
             activitiesAlmostComplete.addView(activitiesInProgressAdapter.getView(i, null, null));
         }
+
 
         //Set the closest skill to leveling up
         LinearLayout closestSkillLinearLayout = (LinearLayout) root.findViewById(R.id.skill_closest_to_leveling);
