@@ -2,7 +2,6 @@ package com.alecjarett.ballardcs.rpgu;
 
 import android.app.Activity;
 import android.graphics.drawable.GradientDrawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,7 +50,6 @@ public class ActivitiesAdapter extends ArrayAdapter<RPGuActivity> {
                             "drawable",
                             this.getContext().getPackageName()));
         }catch (Exception e){
-            Log.e("hi,", "problem loading skill image");
             activityCategoryIcon.setImageResource(R.drawable.problem_loading_icon_white);
         }
 
@@ -120,6 +118,7 @@ public class ActivitiesAdapter extends ArrayAdapter<RPGuActivity> {
                         dbHandler.updateMonthly(activity.getId(), activity.getQuantityDone());
                         break;
                 }
+                ((MainActivity)getContext()).saveDayAsActive();
             }
         });
 

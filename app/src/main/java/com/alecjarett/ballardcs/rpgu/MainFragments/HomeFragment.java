@@ -47,6 +47,15 @@ public class HomeFragment extends Fragment{
         TextView activeFor = (TextView)root.findViewById(R.id.active_for_days_number);
         activeFor.setText("" + ((MainActivity)getActivity()).getDaysActive());
 
+        String dayOrDays = "";
+        if(((MainActivity)getActivity()).getDaysActive() == 1){
+          dayOrDays = "Day!";
+        }else if(((MainActivity)getActivity()).getDaysActive()>1){
+            dayOrDays = "Days!";
+        }
+        TextView dayOrDaysTextView = (TextView)root.findViewById(R.id.day_or_days_text);
+        dayOrDaysTextView.setText(dayOrDays);
+
         //Set activities almost complete
         LinearLayout activitiesAlmostComplete = (LinearLayout) root.findViewById(R.id.activities_almost_complete);
         List<RPGuActivity> activities = new ArrayList<RPGuActivity>();

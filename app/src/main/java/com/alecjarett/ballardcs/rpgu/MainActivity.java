@@ -223,41 +223,61 @@ public class MainActivity extends AppCompatActivity {
         return skillsList;
     }
 
-    public int getDate() {
+
+    public static int daysBetween(Calendar startDate, Calendar endDate) {
+        long start = startDate.getTimeInMillis();
+        long end = endDate.getTimeInMillis();
+        long diff = end - start + 1;
+        Long daysBetween = diff / 86400000;
+        return daysBetween.intValue();
+    }
+
+
+    public static Calendar convertMillisToCalender(long t){
         Calendar c = Calendar.getInstance();
-        return ((int)c.getTimeInMillis())*1000*60*60*24;
+        c.setTimeInMillis(t);
+        return c;
+    }
+
+    public static long convertCalenderToMillis(Calendar c){
+        return c.getTimeInMillis();
+    }
+
+
+    public final Calendar getDate() {
+        return Calendar.getInstance();
     }
 
     public int getDaysActive(){
         SharedPreferences prefs = getSharedPreferences(
                 getString(R.string.preference_file_key),
                 Context.MODE_PRIVATE);
-        int daysActive = prefs.getInt("last_date_active", 1) - prefs.getInt("first_date_active", 0);
-        if(daysActive == 0){
-            daysActive = 1;
-        }
+
+        int daysActive = (daysBetween(convertMillisToCalender(prefs.getLong("first_date_active", 0)),convertMillisToCalender(prefs.getLong("last_date_active", 0 ))))+1;
         return daysActive;
     }
 
-    public void saveDayAsActive(){
-        int currentDate = getDate();
+    public void saveDayAsActive() {
+        long currentDate = convertCalenderToMillis(getDate());
         SharedPreferences prefs = getSharedPreferences(
                 getString(R.string.preference_file_key),
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        if(prefs.getInt("first_date_active", 0) == 0) {
-            editor.putInt("first_date_active", currentDate);
-            editor.putInt("prev_date_active", currentDate);
-            editor.putInt("last_date_active", currentDate);
+        if(prefs.getLong("first_date_active", 0) == 0) {
+            editor.putLong("first_date_active", currentDate);
+            editor.putLong("last_date_active", currentDate);
+            editor.commit();
         }else{
-            editor.putInt("last_date_active", currentDate);
-        }
-        if(prefs.getInt("last_date_active", 1) - prefs.getInt("prev_day_active",0) != 1 && prefs.getInt("last_date_active", 1) - prefs.getInt("prev_day_active",0) != 0){
-            editor.putInt("first_date_active", currentDate);
-            editor.putInt("prev_date_active", currentDate);
-            editor.putInt("last_date_active", currentDate);
-        }
-        editor.commit();
+            int daysBetweenTodayAndLastActiveDay = (daysBetween(convertMillisToCalender(prefs.getLong("last_date_active", 0)),getDate()));
+            if(daysBetweenTodayAndLastActiveDay<=1){
+                editor.putLong("last_date_active", currentDate);
+                editor.commit();
+            }else if(daysBetweenTodayAndLastActiveDay > 1)
+                editor.putLong("first_date_active", currentDate);
+                editor.putLong("last_date_active", currentDate);
+                editor.commit();
+            }
+
     }
 
 

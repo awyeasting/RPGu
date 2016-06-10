@@ -40,7 +40,6 @@
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/days_active_circle_bottom_text_padding"
             android:gravity="center"
-            android:text="@string/active_for_day"
             android:textColor="@color/textColorPrimary"
             android:textSize="@dimen/days_active_circle_text_size"
             android:id="@+id/day_or_days_text" />
