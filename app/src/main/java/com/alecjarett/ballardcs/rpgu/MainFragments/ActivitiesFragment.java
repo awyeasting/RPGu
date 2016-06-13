@@ -27,6 +27,7 @@ public class ActivitiesFragment extends Fragment{
 
     public ActivitiesFragment(){}
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

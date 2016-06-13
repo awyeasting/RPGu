@@ -55,8 +55,6 @@ public class ActivitiesAdapter extends ArrayAdapter<RPGuActivity> {
 
         View iconBackground = root.findViewById(R.id.activity_icon_circle);
 
-
-
         int backgroundColor;
         switch (activityType){
             case Weekly:

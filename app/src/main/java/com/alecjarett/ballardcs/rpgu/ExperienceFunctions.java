@@ -27,6 +27,12 @@ public class ExperienceFunctions {
         return 50 *(level*level - level);
     }
 
+    /**
+     * Returns the experience required for the next level
+     * @param experience The experience the user has
+     * @return The experience necessary to level up
+     *
+     */
     public static int getExperienceToNextLevel(int experience){
         return getExperience(getLevel(experience)+1)-experience;
     }

@@ -26,12 +26,17 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
+    //MainActivity holds all user skills, activities, and achievements in lists.
     private List<Skill> skillsList;
     private List<RPGuActivity> dailiesList;
     private List<RPGuActivity> weekliesList;
     private List<RPGuActivity> monthliesList;
     private List<RPGuAchievement> achievementsList;
 
+    /**
+     * Called when app is created, sets up UI for main page.
+     * @param savedInstanceState The saved instance state from last app use
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +54,10 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
     }
 
+    /**
+     * Sets up the UI for 'swipe' layout
+     * @param viewPager the viewPager created in onCreate
+     */
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
@@ -63,6 +72,10 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
     }
 
+    /**
+     * Loads current activities for user into a list.
+     * @return The list of current activities
+     */
     public List<RPGuActivity> loadCurrentActivities() {
         List<RPGuActivity> currentActivities = new ArrayList<RPGuActivity>();
 
@@ -81,6 +94,10 @@ public class MainActivity extends AppCompatActivity {
         return currentActivities;
     }
 
+    /**
+     * Loads daily activities from database for user
+     * @return List of daily activities for user
+     */
     public List<RPGuActivity> loadCurrentDailies() {
 
         //If dailies haven't already been loaded then load them
@@ -104,6 +121,10 @@ public class MainActivity extends AppCompatActivity {
         return dailiesList;
     }
 
+    /**
+     * Loads weekly activities from database for user
+     * @return List of weekly activities for user
+     */
     public List<RPGuActivity> loadCurrentWeeklies() {
 
         //If weeklies haven't already been loaded then load them
@@ -127,6 +148,10 @@ public class MainActivity extends AppCompatActivity {
         return weekliesList;
     }
 
+    /**
+     * Loads monthly activities from database for user
+     * @return List of monthly activities for user
+     */
     public List<RPGuActivity> loadCurrentMonthlies() {
 
         //If monthlies haven't already been loaded then load them
@@ -150,7 +175,12 @@ public class MainActivity extends AppCompatActivity {
         return monthliesList;
     }
 
-
+    /**
+     * Generates user activities from a generalized list of activities
+     * @param skills The skills that the user trains
+     * @param type The activity type (Daily, Weekly, Monthly) for the activities to generate
+     * @return The list of activities to be presented to the user
+     */
     public List<RPGuActivity> generateActivities(List<Skill> skills, ActivitiesAdapter.ActivityType type) {
 
         List<RPGuActivity> activities = new ArrayList<RPGuActivity>();
@@ -222,6 +252,10 @@ public class MainActivity extends AppCompatActivity {
         return activities;
     }
 
+    /**
+     * Loads current achievements for user into a list.
+     * @return The list of current achievements
+     */
     public List<RPGuAchievement> loadCurrentAchievements() {
 
         //If achievements haven't already been loaded then load them
@@ -244,6 +278,10 @@ public class MainActivity extends AppCompatActivity {
         return achievementsList;
     }
 
+    /**
+     * Generates user achievements from a generalized list of achievements
+     * @return The list of achievements to be presented to the user
+     */
     private List<RPGuAchievement> generateBaseAchievements() {
         List<RPGuAchievement> achievements = new ArrayList<RPGuAchievement>();
 
@@ -260,6 +298,10 @@ public class MainActivity extends AppCompatActivity {
         return achievements;
     }
 
+    /**
+     * Loads Skills objects with current XP values for UI use
+     * @return The list of Skills for the user
+     */
     public List<Skill> loadSkills() {
 
         if(skillsList == null) {
@@ -316,6 +358,12 @@ public class MainActivity extends AppCompatActivity {
         return skillsList;
     }
 
+    /**
+     * Gives the user XP in a certain Skill for completing an action
+     * @param skillName The skill that the XP should be added to
+     * @param xp The XP that the user should gain from an action
+     * @return
+     */
     public boolean addXPToSkill(String skillName, int xp){
         SharedPreferences prefs = getSharedPreferences(
                 getString(R.string.preference_file_key),
@@ -344,6 +392,12 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+    /**
+     * Finds the number of days between two dates
+     * @param startDate The first date as a Calender object
+     * @param endDate The second date as a Calender object
+     * @return The number of days in between startDate and endDate
+     */
     public static int daysBetween(Calendar startDate, Calendar endDate) {
         long start = startDate.getTimeInMillis();
         long end = endDate.getTimeInMillis();
@@ -352,18 +406,30 @@ public class MainActivity extends AppCompatActivity {
         return daysBetween.intValue();
     }
 
-
-    public static Calendar convertMillisToCalender(long t){
+    /**
+     * Converts a time in milliseconds to a Calender object
+     * @param millis The timestamp in milliseconds
+     * @return The Calender object set at time 'millis'
+     */
+    public static Calendar convertMillisToCalender(long millis){
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(t);
         return c;
     }
 
+    /**
+     * Converts a Calender object to a time in milliseconds
+     * @param c The Calender object set at a specific time
+     * @return The timestamp in milliseconds in that calender object
+     */
     public static long convertCalenderToMillis(Calendar c){
         return c.getTimeInMillis();
     }
 
-
+    /**
+     * Gets the current date as a Calender object
+     * @return
+     */
     public final Calendar getDate() {
         return Calendar.getInstance();
     }
@@ -377,6 +443,9 @@ public class MainActivity extends AppCompatActivity {
         return daysActive;
     }
 
+    /**
+     * Sets current day to active, helps user know how long they have been active
+     */
     public void saveDayAsActive() {
         long currentDate = convertCalenderToMillis(getDate());
         SharedPreferences prefs = getSharedPreferences(
@@ -400,8 +469,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
+    /**
+     * Gets the level title for a given level
+     * @param level The level of the user
+     * @return The level title for the given level
+     */
     public static String getLevelTitle(int level){
         int levelValue = (int)(Math.ceil(((double)level)/10));
         switch (levelValue) {
@@ -431,6 +503,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Class for 'swipe' layout in main UI
+     */
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
