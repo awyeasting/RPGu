@@ -64,7 +64,7 @@ public class HomeFragment extends Fragment{
         // Filter out the activities that aren't in progress
         List<RPGuActivity> inProgressActivities = new ArrayList<RPGuActivity>();
         for (RPGuActivity activity : activities){
-            if(activity.getQuantityDone() > 0)
+            if(activity.getQuantityDone() > 0 && activity.getQuantityToDo()-activity.getQuantityDone() > 0)
                 inProgressActivities.add(activity);
         }
         ActivitiesInProgressAdapter activitiesInProgressAdapter = new ActivitiesInProgressAdapter(getActivity(),inProgressActivities);

@@ -112,6 +112,7 @@ public class ActivitiesAdapter extends ArrayAdapter<RPGuActivity> {
                 }
                 activityActionsToDo = activity.getQuantityToDo() - activity.getQuantityDone();
                 if(activityActionsToDo == 0){
+                    ((MainActivity)getContext()).addXPToSkill(activity.getCategoryLabel(), activity.getXp());
                     activityButton.setText("Done");
                     activityButton.setEnabled(false);
                 }else if(activityActionsToDo == 1){

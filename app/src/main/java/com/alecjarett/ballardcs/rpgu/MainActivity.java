@@ -354,6 +354,7 @@ public class MainActivity extends AppCompatActivity {
             skills.add(new Skill("Wisdom", wisdomXP));
 
             skillsList = skills;
+            editor.commit();
         }
         return skillsList;
     }
@@ -380,11 +381,12 @@ public class MainActivity extends AppCompatActivity {
                         skillsList.add(new Skill(skillsList.get(i).getSkillLabel(), oldXP + xp));
                         skillsList.remove(i);
                         editor.putInt(skillName.toLowerCase() + "_xp", oldXP + xp);
+                        editor.commit();
                         return true;
                     }
                 }
             } else {
-                Log.e("hi,", "Invalid skillName input in addXPToSkill");
+                Log.e("hi,", "Invalid skillName input in addXPToSkill,"+skillName );
             }
         } catch (Exception e) {
             Log.e("hi,", "Error in addXPToSkill");

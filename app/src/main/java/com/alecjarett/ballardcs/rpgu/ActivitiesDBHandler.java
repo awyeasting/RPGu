@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -205,11 +206,10 @@ public class ActivitiesDBHandler extends SQLiteOpenHelper{
 
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String strFilter = COLUMN_STRINGID + " = \"" + id + "\"";
-        ContentValues args = new ContentValues();
-        args.put(COLUMN_QUANTITYDONE, quantityDone);
-        db.update(tableName, args, strFilter, null);
+        String query = "UPDATE " + tableName + " SET " + COLUMN_QUANTITYDONE + "="
+                + quantityDone + " WHERE " + COLUMN_STRINGID + "='" + id + "'";
 
+        db.execSQL(query);
         db.close();
     }
 
