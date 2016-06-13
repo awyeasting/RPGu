@@ -1,5 +1,7 @@
 package com.alecjarett.ballardcs.rpgu;
 
+import java.util.UUID;
+
 /**
  * Created by bal_awyeasting on 5/6/2016.
  */
@@ -22,7 +24,7 @@ public class RPGuActivity {
         this.xp=xp;
         this.categoryLabel=categoryLabel;
         this.activityType=activityType;
-        this.id = System.currentTimeMillis() + "";
+        this.id = UUID.randomUUID().toString();
     }
 
     public RPGuActivity(int quantityToDo,int quantityDone,String label,String description, int xp, String categoryLabel, ActivitiesAdapter.ActivityType activityType, String id){
