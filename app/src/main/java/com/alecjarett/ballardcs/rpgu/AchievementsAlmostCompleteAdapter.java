@@ -22,8 +22,11 @@ import java.util.List;
             super(context,0,achievementList);
         }
 
+    //When the view for each achievement is created:
         public View getView(int position, View convertView, ViewGroup parent){
+            //Find the current achievement
             RPGuAchievement achievement = getItem(position);
+            //Set the main view for that achievement
             View root = LayoutInflater.from(getContext()).inflate(R.layout.list_item_achievements_almost_complete, parent, false);
 
             //Set the achievement category text
@@ -38,6 +41,7 @@ import java.util.List;
             TextView xpGained = (TextView) root.findViewById(R.id.achievement_xp_gain);
             xpGained.setText("+"+achievement.getXp()+" xp");
 
+            //Set progress bar text for achievement
             if(achievement.getQuantityToDo() > 1) {
                 ProgressBar progressBar = (ProgressBar) root.findViewById(R.id.achievement_progress_bar);
                 progressBar.setProgress(100 * achievement.getQuantityDone() / achievement.getQuantityToDo());
@@ -58,8 +62,7 @@ import java.util.List;
                 dividerLine.setVisibility(View.GONE);
             }
 
-
-
+            //Create achievement icon
             ImageView achievementCategoryIcon = (ImageView) root.findViewById(R.id.achievement_icon_image);
             try {
                 achievementCategoryIcon.setImageResource(this.getContext()
@@ -71,12 +74,8 @@ import java.util.List;
                 Log.e("hi,", "problem loading skill image");
                 achievementCategoryIcon.setImageResource(R.drawable.problem_loading_icon_white);
             }
-
             View iconBackground = root.findViewById(R.id.achievement_icon_circle);
-
-
                     int backgroundColor = R.color.achievementsProgressColor;
-
             ((GradientDrawable)iconBackground.getBackground()).setColor(getContext().getResources().getColor(backgroundColor));
 
             return root;

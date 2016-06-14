@@ -22,6 +22,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    //Variables used for main 'swipe' view
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;

@@ -13,7 +13,7 @@ import android.widget.TextView;
 import java.util.List;
 
 /**
- * Created by Alec Yeasting on 4/29/2016.
+ * Adapter for making views from a list of user skills
  */
 public class SkillsListAdapter extends ArrayAdapter<Skill> {
 
@@ -21,9 +21,12 @@ public class SkillsListAdapter extends ArrayAdapter<Skill> {
         super(context,0,skillsList);
     }
 
+    //For each skill in the list:
     public View getView(int position, View convertView, ViewGroup parent){
+        //Find current skill
         Skill skill = getItem(position);
 
+        //Get some data about skill
         int currentXP = skill.getXP();
         int skillLevel = ExperienceFunctions.getLevel(currentXP);
         int nextLevelXP = ExperienceFunctions.getExperience(skillLevel + 1);

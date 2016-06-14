@@ -23,8 +23,11 @@ public class ActivitiesInProgressAdapter extends ArrayAdapter<RPGuActivity> {
         super(context,0,activityList);
     }
 
+    //When each activity view is created:
     public View getView(int position, View convertView, ViewGroup parent){
+        //Find the current activity
         RPGuActivity activity = getItem(position);
+        //Set main view for the current activity
         View root = LayoutInflater.from(getContext()).inflate(R.layout.list_item_activities_in_progress, parent, false);
 
         //Set the activity category text
@@ -39,6 +42,7 @@ public class ActivitiesInProgressAdapter extends ArrayAdapter<RPGuActivity> {
         TextView xpGained = (TextView) root.findViewById(R.id.activity_xp_gain);
         xpGained.setText("+"+activity.getXp()+" xp");
 
+        //Set progress bar text
         if(activity.getQuantityToDo() > 1) {
             ProgressBar progressBar = (ProgressBar) root.findViewById(R.id.activity_progress_bar);
             progressBar.setProgress(100 * activity.getQuantityDone() / activity.getQuantityToDo());
@@ -53,12 +57,12 @@ public class ActivitiesInProgressAdapter extends ArrayAdapter<RPGuActivity> {
             quantityToDo.setVisibility(View.VISIBLE);
 
         }
-
         if(position == this.getCount()-1) {
             View dividerLine = root.findViewById(R.id.divider_line);
             dividerLine.setVisibility(View.GONE);
         }
 
+        //Set activity icon
         ImageView activityCategoryIcon = (ImageView) root.findViewById(R.id.activity_icon_image);
         try {
             activityCategoryIcon.setImageResource(this.getContext()
@@ -71,10 +75,9 @@ public class ActivitiesInProgressAdapter extends ArrayAdapter<RPGuActivity> {
             activityCategoryIcon.setImageResource(R.drawable.problem_loading_icon_white);
         }
 
+        //Set activity icon background based on activity type
         View iconBackground = root.findViewById(R.id.activity_icon_circle);
-
         int backgroundColor = R.color.activitiesProgressColor;
-
         switch (activity.getActivityType()){
             case Daily:
                 backgroundColor = R.color.dailiesColor;
