@@ -155,11 +155,25 @@ public class ActivitiesAdapter extends ArrayAdapter<RPGuActivity> {
                 activityActionsToDo = activity.getQuantityToDo() - activity.getQuantityDone();
 
                 //Set the text on the button again now that it has been clicked:
-                //If there are no actions to do, set the text to "Done" and make the button gray, and add XP to skill based on activity
+                //If there are no actions to do, set the button text to "Done", make the button gray,
+                //add XP to skill based on activity, and delete the activity from the database, which
+                //makes the activity disappear from the UI when it is updated
+                dbHandler = new ActivitiesDBHandler(getContext(), null, null, 1);
                 if(activityActionsToDo == 0){
-                    ((MainActivity)getContext()).addXPToSkill(activity.getCategoryLabel(), activity.getXp());
                     activityButton.setText("Done");
                     activityButton.setEnabled(false);
+                    ((MainActivity)getContext()).addXPToSkill(activity.getCategoryLabel(), activity.getXp());
+                    switch (activity.getActivityType()) {
+                        case Daily:
+                            dbHandler.deleteDaily(activity.getId());
+                            break;
+                        case Weekly:
+                            dbHandler.deleteWeekly(activity.getId());
+                            break;
+                        case Monthly:
+                            dbHandler.deleteMonthly(activity.getId());
+                            break;
+                    }
                 }
                 //If there's one action to do, set button text to "Finish"
                 else if(activityActionsToDo == 1){
