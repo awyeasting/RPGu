@@ -416,7 +416,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public static Calendar convertMillisToCalender(long millis){
         Calendar c = Calendar.getInstance();
-        c.setTimeInMillis(t);
+        c.setTimeInMillis(millis);
         return c;
     }
 
