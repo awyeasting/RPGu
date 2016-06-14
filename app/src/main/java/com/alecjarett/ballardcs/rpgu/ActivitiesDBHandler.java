@@ -68,18 +68,35 @@ public class ActivitiesDBHandler extends SQLiteOpenHelper{
         onCreate(db);
     }
 
+    /**
+     * Implements getActivities for the dailies table
+     * @return all dailies in the dailies table
+     */
     public ArrayList<RPGuActivity> getAllDailies() {
         return getActivities(ActivitiesAdapter.ActivityType.Daily);
     }
 
+    /**
+     * Implements getActivities for the weeklies table
+     * @return all weeklies in the weeklies table
+     */
     public ArrayList<RPGuActivity> getAllWeeklies() {
         return getActivities(ActivitiesAdapter.ActivityType.Weekly);
     }
 
+    /**
+     * Implements getActivities for the monthlies table
+     * @return all monthlies in the monthlies table
+     */
     public ArrayList<RPGuActivity> getAllMonthlies() {
         return getActivities(ActivitiesAdapter.ActivityType.Monthly);
     }
 
+    /**
+     * Gets all the activities in a given table in the activities database
+     * @param type activity type (daily, weekly, monthly)
+     * @return All activities in the given table
+     */
     private ArrayList<RPGuActivity> getActivities(ActivitiesAdapter.ActivityType type) {
         String tableName = TABLE_DAILIES;
         switch (type) {
@@ -136,18 +153,35 @@ public class ActivitiesDBHandler extends SQLiteOpenHelper{
         return activities;
     }
 
+    /**
+     * Implements addActivity for the daily table
+     * @param activity the activity to add to the daily table
+     */
     public void addDaily(RPGuActivity activity) {
         addActivity(activity, ActivitiesAdapter.ActivityType.Daily);
     }
 
+    /**
+     * Implements addActivity for the weekly table
+     * @param activity the activity to add to the weekly table
+     */
     public void addWeekly(RPGuActivity activity) {
         addActivity(activity, ActivitiesAdapter.ActivityType.Weekly);
     }
 
+    /**
+     * Implements addActivity for the monthly table
+     * @param activity the activity to add to the monthly table
+     */
     public void addMonthly(RPGuActivity activity) {
         addActivity(activity, ActivitiesAdapter.ActivityType.Monthly);
     }
 
+    /**
+     * Adds a given activity to a given table in the activities database
+     * @param activity the activity to add to the given table
+     * @param type activity type (daily, weekly, monthly)
+     */
     private void addActivity(RPGuActivity activity, ActivitiesAdapter.ActivityType type) {
         String tableName = TABLE_DAILIES;
         switch (type) {
@@ -178,18 +212,39 @@ public class ActivitiesDBHandler extends SQLiteOpenHelper{
         db.close();
     }
 
+    /**
+     * Implements updateActivityCompletion for a row in the dailies table in the activities database
+     * @param id the stringid of a row in the dailies table
+     * @param quantityDone the new quantity done status of a given activity
+     */
     public void updateDaily(String id, int quantityDone) {
         updateActivityCompletion(id, quantityDone, ActivitiesAdapter.ActivityType.Daily);
     }
 
+    /**
+     * Implements updateActivityCompletion for a row in the weeklies table in the activities database
+     * @param id the stringid of a row in the weeklies table
+     * @param quantityDone the new quantity done status of a given activity
+     */
     public void updateWeekly(String id, int quantityDone) {
         updateActivityCompletion(id, quantityDone, ActivitiesAdapter.ActivityType.Weekly);
     }
 
+    /**
+     * Implements updateActivityCompletion for a row in the monthlies table in the activities database
+     * @param id the stringid of a row in the monthlies table
+     * @param quantityDone the new quantity done status of a given activity
+     */
     public void updateMonthly(String id, int quantityDone) {
         updateActivityCompletion(id, quantityDone, ActivitiesAdapter.ActivityType.Monthly);
     }
 
+    /**
+     * Updates a row in an activities table with a given unique id and new quantity done status
+     * @param id the stringid of a row in a given table
+     * @param quantityDone the new completion status of the activity to update
+     * @param type activity type (daily, weekly, monthly)
+     */
     private void updateActivityCompletion (String id, int quantityDone, ActivitiesAdapter.ActivityType type){
         String tableName = TABLE_DAILIES;
         switch (type) {
@@ -211,68 +266,6 @@ public class ActivitiesDBHandler extends SQLiteOpenHelper{
 
         db.execSQL(query);
         db.close();
-    }
-
-    public RPGuActivity findDaily(String id){
-        return findActivity(id, ActivitiesAdapter.ActivityType.Daily);
-    }
-
-    public RPGuActivity findWeekly(String id){
-        return findActivity(id, ActivitiesAdapter.ActivityType.Weekly);
-    }
-
-    public RPGuActivity findMonthly(String id){
-        return findActivity(id, ActivitiesAdapter.ActivityType.Monthly);
-    }
-
-    private RPGuActivity findActivity(String id, ActivitiesAdapter.ActivityType type) {
-        String tableName = TABLE_DAILIES;
-        switch (type) {
-            case Daily:
-                tableName = TABLE_DAILIES;
-                break;
-            case Weekly:
-                tableName = TABLE_WEEKLIES;
-                break;
-            case Monthly:
-                tableName = TABLE_MONTHLIES;
-                break;
-        }
-
-        String query = "Select * FROM " + tableName
-                + " WHERE " + COLUMN_STRINGID + " = \"" + id + "\"";
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        Cursor cursor = db.rawQuery(query, null);
-
-        RPGuActivity activity;
-
-        if(cursor.moveToFirst()){
-            cursor.moveToFirst();
-
-            int quantityToDo = cursor.getInt(1);
-            int quantityDone = cursor.getInt(2);
-            String label = cursor.getString(3);
-            String description = cursor.getString(4);
-            int xp = cursor.getInt(5);
-            String categoryLabel = cursor.getString(6);
-            ActivitiesAdapter.ActivityType activityType = type;
-            String stringID = cursor.getString(7);
-
-            activity = new RPGuActivity(quantityToDo,
-                    quantityDone,
-                    label,
-                    description,
-                    xp,
-                    categoryLabel,
-                    activityType,
-                    stringID);
-            cursor.close();
-        } else {
-            activity = null;
-        }
-        db.close();
-        return activity;
     }
 
     public boolean deleteDaily(String id) {
