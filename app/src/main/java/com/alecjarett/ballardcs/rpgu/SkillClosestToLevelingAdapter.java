@@ -22,17 +22,21 @@ public class SkillClosestToLevelingAdapter {
         this.skill = skill;
     }
 
+    //For the main view:
     public View getView (ViewGroup parent) {
+        //Get skill passed in
         Skill skill = this.skill;
 
+        //Get some data about the skill
         int currentXP = skill.getXP();
         int skillLevel = ExperienceFunctions.getLevel(currentXP);
         int nextLevelXP = ExperienceFunctions.getExperience(skillLevel + 1);
         int levelBaseXP = ExperienceFunctions.getExperience(skillLevel);
 
+        //Set main view for skill
         View root = LayoutInflater.from(getContext()).inflate(R.layout.list_item_skill, parent, false);
 
-        //Load image icon based upon the skill name (lowercase) + "_icon"
+        //Load image icon based upon the skill name
         ImageView skillIcon = (ImageView) root.findViewById(R.id.skill_icon_image);
         try {
             skillIcon.setImageResource(this.getContext()
