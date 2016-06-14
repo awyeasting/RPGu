@@ -27,7 +27,7 @@ import java.util.List;
  */
 public class HomeFragment extends Fragment{
 
-    public HomeFragment(){}
+    public HomeFragment() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,23 +40,49 @@ public class HomeFragment extends Fragment{
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        //Set days active circle color
+
+        //Days active circle loading
+        loadDaysActiveCircle(root);
+
+        //Activities in progress loading
+        loadActivitiesInProgress(root);
+
+        //Skill closest to leveling loading
+        loadSkillClosestToLeveling(root);
+
+        //Achievements almost complete loading
+        loadAchievementsAlmostComplete(root);
+
+
+        return root;
+    }
+
+    /**
+     * Loads the proper number and day word in the home page days active circle
+     * @param root an instance of R.layout.fragment_home
+     */
+    private void loadDaysActiveCircle(View root) {
         View daysActiveCircle = root.findViewById(R.id.days_active_circle);
         ((GradientDrawable)daysActiveCircle.getBackground()).setColor(getContext().getResources().getColor(R.color.colorPrimary));
 
         TextView activeFor = (TextView)root.findViewById(R.id.active_for_days_number);
-        activeFor.setText("" + ((MainActivity)getActivity()).getDaysActive());
+        activeFor.setText("" + ((MainActivity) getActivity()).getDaysActive());
 
         String dayOrDays = "";
         if(((MainActivity)getActivity()).getDaysActive() == 1){
-          dayOrDays = "Day!";
+            dayOrDays = "Day!";
         }else if(((MainActivity)getActivity()).getDaysActive()>1){
             dayOrDays = "Days!";
         }
         TextView dayOrDaysTextView = (TextView)root.findViewById(R.id.day_or_days_text);
         dayOrDaysTextView.setText(dayOrDays);
+    }
 
-        //Set activities almost complete
+    /**
+     * Loads the activities in progress for the home page ui
+     * @param root an instance of R.layout.fragment_home
+     */
+    private void loadActivitiesInProgress(View root) {
         LinearLayout activitiesAlmostComplete = (LinearLayout) root.findViewById(R.id.activities_almost_complete);
         List<RPGuActivity> activities = new ArrayList<RPGuActivity>();
         activities = ((MainActivity)getActivity()).loadCurrentActivities();
@@ -73,13 +99,16 @@ public class HomeFragment extends Fragment{
         for(int i = 0; i < activitiesCount; i++){
             activitiesAlmostComplete.addView(activitiesInProgressAdapter.getView(i, null, null));
         }
+    }
 
-
-        //Set the closest skill to leveling up
+    /**
+     * Loads the skill that is closest to leveling in the home page ui
+     * @param root an instance of R.layout.fragment_home
+     */
+    private void loadSkillClosestToLeveling(View root) {
         LinearLayout closestSkillLinearLayout = (LinearLayout) root.findViewById(R.id.skill_closest_to_leveling);
 
         List<Skill> skills = ((MainActivity)getActivity()).loadSkills();
-
         Skill closestSkill = null;
         for(Skill s : skills){
             if(closestSkill==null){
@@ -90,10 +119,14 @@ public class HomeFragment extends Fragment{
         }
 
         SkillClosestToLevelingAdapter skillClosestToLevelingAdapter = new SkillClosestToLevelingAdapter(getActivity(),closestSkill);
-
         closestSkillLinearLayout.addView(skillClosestToLevelingAdapter.getView(null));
+    }
 
-        //Set activities almost complete
+    /**
+     * Loads the achievements almost complete in the home page ui
+     * @param root an instance of R.layout.fragment_home
+     */
+    private void loadAchievementsAlmostComplete(View root) {
         LinearLayout achievementsAlmostComplete = (LinearLayout) root.findViewById(R.id.achievements_almost_complete);
         List<RPGuAchievement> achievements = ((MainActivity)getActivity()).loadCurrentAchievements();
 
@@ -103,8 +136,5 @@ public class HomeFragment extends Fragment{
         for(int i = 0; i < achievementsCount; i++){
             achievementsAlmostComplete.addView(achievementsAlmostCompleteAdapter.getView(i, null, null));
         }
-
-        return root;
     }
-
 }
