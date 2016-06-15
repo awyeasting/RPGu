@@ -14,12 +14,16 @@ import java.util.ArrayList;
  */
 public class ActivitiesDBHandler extends SQLiteOpenHelper{
 
+    //Activities database information
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "activitiesDB.db";
+
+    //Table names
     public static final String TABLE_DAILIES = "dailies";
     public static final String TABLE_WEEKLIES = "weeklies";
     public static final String TABLE_MONTHLIES = "monthlies";
 
+    //Column static names
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_QUANTITYTODO = "quantitytodo";
     public static final String COLUMN_QUANTITYDONE = "quantitydone";
@@ -268,18 +272,39 @@ public class ActivitiesDBHandler extends SQLiteOpenHelper{
         db.close();
     }
 
+    /**
+     * Implements deleteActivity for a row in the dailies table in the activities database
+     * @param id The string id of the row to delete
+     * @return Whether the deletion was successful or not
+     */
     public boolean deleteDaily(String id) {
         return deleteActivity(id, ActivitiesAdapter.ActivityType.Daily);
     }
 
+    /**
+     * Implements deleteActivity for a row in the weeklies table in the activities database
+     * @param id The string id of the row to delete
+     * @return Whether the deletion was successful or not
+     */
     public boolean deleteWeekly(String id) {
         return deleteActivity(id, ActivitiesAdapter.ActivityType.Weekly);
     }
 
+    /**
+     * Implements deleteActivity for a row in the monthlies table in the activities database
+     * @param id The string id of the row to delete
+     * @return Whether the deletion was successful or not
+     */
     public boolean deleteMonthly(String id) {
         return deleteActivity(id, ActivitiesAdapter.ActivityType.Monthly);
     }
 
+    /**
+     * Deletes an activity with a given stringid from a given table
+     * @param id the string id of the activity row to delete
+     * @param type activity type (daily, weekly, monthly)
+     * @return Whether the deletion was successful or not
+     */
     private boolean deleteActivity(String id, ActivitiesAdapter.ActivityType type) {
         String tableName = TABLE_DAILIES;
         switch (type) {
