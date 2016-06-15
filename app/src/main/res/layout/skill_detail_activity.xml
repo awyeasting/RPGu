@@ -6,53 +6,103 @@
     android:orientation="vertical"
     android:padding="20dp"
     android:background="@color/behindMainArea">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/mainAreaColor">
-
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:id="@+id/detail_page_icon"/>
-
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:paddingTop="20dp">
-
+            android:orientation="horizontal"
+            android:background="@color/mainAreaColor">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/balance_icon"
+                android:id="@+id/detail_page_icon"/>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="40dp"
+                android:padding="5dp"
+                android:textSize="35dp"
+                android:text="Skill Name"
                 android:textColor="@color/textColorSecondary"
                 android:gravity="center_vertical"
                 android:id="@+id/detail_page_skill_title"/>
-
             <TextView
+                android:id="@+id/skill_detail_level_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/detail_page_level_and_level_title"
-                android:textSize="15dp"
-                android:textColor="#AAAAAA"/>
-
-            <TextView
-                android:paddingTop="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/detail_page_xp"
-                android:textColor="@color/textColorSecondary"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/detail_page_xp_to_next_level"
-                android:textColor="@color/textColorSecondary"/>
-
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="0dp"
+                android:text="Level"
+                android:textSize="24dp"
+                android:gravity="center_vertical"
+                android:background="@color/mainAreaColor"
+                android:paddingBottom="30dp"
+                />
+            </LinearLayout>
         </LinearLayout>
-
+        <LinearLayout
+            android:background="@color/mainAreaColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/skill_detail_xp_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".5"
+                android:textSize="24dp"
+                android:text="XP
+                "
+                android:gravity="center"
+                android:paddingBottom="8dp"
+                />
+            <TextView
+                android:id="@+id/skill_detail_level_up_xp_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".5"
+                android:layout_toRightOf="@+id/skill_detail_xp_text_view"
+                android:textSize="24dp"
+                android:text="XP Next Level
+                "
+                android:gravity="center"
+                android:paddingBottom="8dp"
+                />
+        </LinearLayout>
+    <LinearLayout
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/mainAreaColor">
+        <TextView
+            android:paddingRight="10dp"
+            android:id="@+id/skill_detail_current_level_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10"/>
+        <ProgressBar
+            android:id="@+id/skill_detail_progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/mainAreaColor"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:progressTint="@color/progressBarForegroundColor"
+            android:indeterminate="false"
+            android:minWidth="100dp"
+            android:progress="20"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:paddingLeft="10dp"
+            android:id="@+id/skill_detail_next_level_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="11"/>
     </LinearLayout>
+
 </LinearLayout>
