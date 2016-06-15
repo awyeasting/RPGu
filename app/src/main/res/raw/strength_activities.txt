@@ -1,0 +1,15 @@
+label: Lifting
+desc: Lift 10 lbs. until failure
+-
+label: Upper Body
+desc: Do 10 push-ups
+-
+label: Abs
+desc: Do 10 sit-ups
+-
+label: Arms
+desc: Do 10 pull-ups
+-
+label: Lower Body
+desc: Do 10 forward lunges
+-

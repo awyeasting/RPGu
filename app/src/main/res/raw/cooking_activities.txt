@@ -1,0 +1,15 @@
+label: Baking
+desc: Bake a cake
+-
+label: Frying
+desc: Fry an egg
+-
+label: Grilling
+desc: Cook something on a grill
+-
+label: Protein
+desc: Make a protein-filled meal (Meat, nuts, etc.)
+-
+label: Baking
+desc: Bake a pie
+-
