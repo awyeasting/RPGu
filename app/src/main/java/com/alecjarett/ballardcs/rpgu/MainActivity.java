@@ -1,5 +1,6 @@
 package com.alecjarett.ballardcs.rpgu;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,6 +17,9 @@ import com.alecjarett.ballardcs.rpgu.MainFragments.ActivitiesFragment;
 import com.alecjarett.ballardcs.rpgu.MainFragments.HomeFragment;
 import com.alecjarett.ballardcs.rpgu.MainFragments.StatsFragment;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -330,6 +334,37 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return activities;
+    }
+
+    private RPGuActivity loadRandomActivity(String skill) {
+        RPGuActivity activity;
+
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(
+                    new InputStreamReader(getAssets().open("")));
+
+            String line;
+            String file = "";
+            while((line = reader.readLine()) != null){
+                file += line;
+            }
+        } catch(IOException e){
+
+        } finally {
+            if(reader != null){
+                try {
+                    reader.close();
+                } catch(IOException e) {
+
+                }
+            }
+        }
+
+        String label = "";
+        String desc = "";
+
+        return new RPGuActivity(0,0,label,desc,0,skill,null,"");
     }
 
     /**
