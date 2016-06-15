@@ -208,45 +208,124 @@ public class MainActivity extends AppCompatActivity {
             String description = "";
             int xp = 0;
             String categoryLabel = skill.getSkillLabel();
-
+            int randomNumberZeroToOneHundred;
             switch (skill.getSkillLabel().toLowerCase()) {
                 case "balance":
-                    label = "Single Leg Deadlift";
-                    description = "Do 6 single leg deadlifts";
+                    randomNumberZeroToOneHundred = (int)(100*Math.random());
+                    if(randomNumberZeroToOneHundred<20){
+                        label = "Single Leg Deadlift";
+                        description = "Do 6 single leg deadlifts";
+                    }else if(randomNumberZeroToOneHundred>19 && randomNumberZeroToOneHundred<40){
+                        label = "Stand on a Foot";
+                        description = "Stand on one foot for 30 seconds";
+                    }else if(randomNumberZeroToOneHundred>39 && randomNumberZeroToOneHundred<60){
+                        label = "Walk Heel-to-Toe";
+                        description = "Walk for 30 seconds heel-to-toe";
+                    }else if(randomNumberZeroToOneHundred>59 && randomNumberZeroToOneHundred<80){
+                        label = "Squats";
+                        description = "Do 15 squats";
+                    }else {
+                        label = "Stand on a Foot, Blind";
+                        description = "Stand on one foot for 15 seconds with eyes closed";
+                    }
                     break;
                 case "cooking":
-                    label = "Baking";
-                    description = "Bake a cake";
+                    randomNumberZeroToOneHundred = (int)(100*Math.random());
+                    if(randomNumberZeroToOneHundred<20){
+                        label = "Baking";
+                        description = "Bake a cake";
+                    }else if(randomNumberZeroToOneHundred>19 && randomNumberZeroToOneHundred<40){
+                        label = "Frying";
+                        description = "Fry an egg";
+                    }else if(randomNumberZeroToOneHundred>39 && randomNumberZeroToOneHundred<60){
+                        label = "Grilling";
+                        description = "Cook something on a grill";
+                    }else if(randomNumberZeroToOneHundred>59 && randomNumberZeroToOneHundred<80){
+                        label = "Protein";
+                        description = "Make a protein-filled meal (Meat, nuts, etc.)";
+                    }else {
+                        label = "Baking";
+                        description = "Bake a pie";
+                    }
                     break;
                 case "endurance":
-                    label = "Running";
-                    description = "Run a mile";
+                    randomNumberZeroToOneHundred = (int)(100*Math.random());
+                    if(randomNumberZeroToOneHundred<20){
+                        label = "Running";
+                        description = "Run a mile";
+                    }else if(randomNumberZeroToOneHundred>19 && randomNumberZeroToOneHundred<40){
+                        label = "Walking";
+                        description = "Walk two miles";
+                    }else if(randomNumberZeroToOneHundred>39 && randomNumberZeroToOneHundred<60){
+                        label = "Jogging";
+                        description = "Jog a mile";
+                    }else if(randomNumberZeroToOneHundred>59 && randomNumberZeroToOneHundred<80){
+                        label = "Biking";
+                        description = "Go biking for 30 minutes";
+                    }else {
+                        label = "Running";
+                        description = "Run 2 miles";
+                    }
+
                     break;
                 case "flexibility":
-                    label = "Stretching";
-                    description = "Do a standing forward bend";
+                    randomNumberZeroToOneHundred = (int)(100*Math.random());
+                    if(randomNumberZeroToOneHundred<20){
+                        label = "Stretching";
+                        description = "Do a standing forward bend";
+                    }else if(randomNumberZeroToOneHundred>19 && randomNumberZeroToOneHundred<40){
+                        label = "Stretching";
+                        description = "Do an ankle stretch";
+                    }else if(randomNumberZeroToOneHundred>39 && randomNumberZeroToOneHundred<60){
+                        label = "Stretching";
+                        description = "Stretch your left leg out";
+                    }else if(randomNumberZeroToOneHundred>59 && randomNumberZeroToOneHundred<80){
+                        label = "Stretching";
+                        description = "Stretch your right leg out";
+                    }else {
+                        label = "Yoga";
+                        description = "Do 15 minutes of yoga";
+                    }
                     break;
                 case "strength":
-                    label = "Lifting";
-                    description = "Lift 10 lb weights until failure";
+                    randomNumberZeroToOneHundred = (int)(100*Math.random());
+                    if(randomNumberZeroToOneHundred<20){
+                        label = "Lifting";
+                        description = "Lift 10 lbs. until failure";
+                    }else if(randomNumberZeroToOneHundred>19 && randomNumberZeroToOneHundred<40){
+                        label = "Upper Body";
+                        description = "Do 10 push-ups";
+                    }else if(randomNumberZeroToOneHundred>39 && randomNumberZeroToOneHundred<60){
+                        label = "Abs";
+                        description = "Do 10 sit-ups";
+                    }else if(randomNumberZeroToOneHundred>59 && randomNumberZeroToOneHundred<80){
+                        label = "Arms";
+                        description = "Do 10 pull-ups";
+                    }else {
+                        label = "Lower Body";
+                        description = "Do 10 forward lunges";
+                    }
                     break;
                 case "wisdom":
                     label = "Reading";
                     if(quantity == 1) {
-                        description = "Read a world news article";
+                        randomNumberZeroToOneHundred = (int) (100 * Math.random());
+                        if (randomNumberZeroToOneHundred < 33) {
+                            description = "Read a world news article";
+                        } else if (randomNumberZeroToOneHundred > 34 && randomNumberZeroToOneHundred < 66) {
+                            description = "Read a news article";
+                        } else {
+                            description = "Read an article";
+                        }
                     }else if(quantity < 6){
                         description = "Read a 100+ page book";
                     }else {
                         description = "Read a 200+ page book";
                     }
+                        quantity = 1;
                     break;
             }
-
             xp = (int)(110 * Math.pow((quantity), 2));
-            if(skill.getSkillLabel().equals("wisdom")){
-                quantity = 1;
-            }
-
             activities.add(new RPGuActivity(quantity, 0, label, description, xp, categoryLabel, type));
         }
 

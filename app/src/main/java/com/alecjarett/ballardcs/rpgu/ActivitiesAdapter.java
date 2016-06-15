@@ -75,13 +75,19 @@ public class ActivitiesAdapter extends ArrayAdapter<RPGuActivity> {
         }
         ((GradientDrawable)iconBackground.getBackground()).setColor(getContext().getResources().getColor(backgroundColor));
 
+
         /**
          * ActivityButton - Button clicked when an activity is complete or partially complete
          */
         Button activityButton = (Button) root.findViewById(R.id.activity_button);
         int activityActionsToDo = activity.getQuantityToDo() - activity.getQuantityDone();
 
-        //Set text of button on initial view based on activity quantity completed:
+
+
+        /**
+         * Set text of button on initial view based on activity quantity completed:
+         */
+
         //If there's one action to do, set button text to "Finish"
         if(activityActionsToDo == 1){
             activityButton.setText("Finish");
@@ -96,7 +102,9 @@ public class ActivitiesAdapter extends ArrayAdapter<RPGuActivity> {
             activityButton.setText("+");
         }
 
-        //Set initial text on progress bar and in textviews next to it
+
+
+        //Set initial data in progress bar and TextViews next to it
         if(activity.getQuantityToDo() > 1) {
             ProgressBar progressBar = (ProgressBar) root.findViewById(R.id.activity_progress_bar);
             progressBar.setProgress(100 * activity.getQuantityDone() / activity.getQuantityToDo());
@@ -113,22 +121,28 @@ public class ActivitiesAdapter extends ArrayAdapter<RPGuActivity> {
         }
 
 
-        //Set a click listener to the button
+        /**
+         * This is the OnClickListener for the activity button.
+         * It has many functions.
+         */
         activityButton.setOnClickListener(new View.OnClickListener() {
 
 
-        //When it is clicked:
+         //When it is clicked:
+
             @Override
             public void onClick(View v) {
                 Button activityButton = (Button) v.findViewById(R.id.activity_button);
                 int activityActionsToDo = activity.getQuantityToDo() - activity.getQuantityDone();
 
-                //Increase quantity done by 1 on UI
+
+                //Increase quantity done by 1 on activity object
                 if(activityActionsToDo>=1){
                     activity.increaseQuantityDone();
                 }
 
-                //Increase quantity done by 1 on the progress bar and textview next to it
+
+                //Increase quantity done by 1 on the progress bar and TextView next to it
                 if(activity.getQuantityToDo() > 1) {
                     ProgressBar progressBar = (ProgressBar) ((LinearLayout) (v.getParent().getParent().getParent())).findViewById(R.id.activity_progress_bar);
                     progressBar.setProgress(100 * activity.getQuantityDone() / activity.getQuantityToDo());
@@ -137,6 +151,7 @@ public class ActivitiesAdapter extends ArrayAdapter<RPGuActivity> {
                     quantityDone.setText(activity.getQuantityDone() + " /");
                     quantityDone.setVisibility(View.VISIBLE);
                 }
+
 
                 //Increase quantity done by 1 in database
                 ActivitiesDBHandler dbHandler = new ActivitiesDBHandler(getContext(), null, null, 1);
@@ -154,8 +169,11 @@ public class ActivitiesAdapter extends ArrayAdapter<RPGuActivity> {
 
                 activityActionsToDo = activity.getQuantityToDo() - activity.getQuantityDone();
 
-                //Set the text on the button again now that it has been clicked:
-                //If there are no actions to do, set the button text to "Done", make the button gray,
+
+                //Update the text on the button again:
+
+                //If there are no actions to do, the activity is complete.
+                //Set the button text to "Done", make the button gray,
                 //add XP to skill based on activity, and delete the activity from the database, which
                 //makes the activity disappear from the UI when it is updated
                 dbHandler = new ActivitiesDBHandler(getContext(), null, null, 1);
@@ -175,15 +193,21 @@ public class ActivitiesAdapter extends ArrayAdapter<RPGuActivity> {
                             break;
                     }
                 }
-                //If there's one action to do, set button text to "Finish"
+
+                //If there's one action left to do, set button text to "Finish"
                 else if(activityActionsToDo == 1){
                     activityButton.setText("Finish");
                 }
-                //In all other cases, there is more than 1 action to do, so set button text to "+"
+
+                //In all other cases, set button text to "+"
                 else{
                     activityButton.setText("+");
                 }
                 ((MainActivity)getContext()).saveDayAsActive();
+
+
+                //Tell the UI that the data has been updated, and it must update itself
+                notifyDataSetChanged();
             }
         });
 
