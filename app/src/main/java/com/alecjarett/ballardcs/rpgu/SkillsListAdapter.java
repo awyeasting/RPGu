@@ -69,7 +69,7 @@ public class SkillsListAdapter extends ArrayAdapter<Skill> {
         //Load progress bar
         ProgressBar progressBar = (ProgressBar)root.findViewById(R.id.skill_progress_bar);
 
-        double levelProgress = (double)(currentXP-levelBaseXP)/(double)(nextLevelXP-levelBaseXP);
+        double levelProgress = ((double)(currentXP-levelBaseXP))/((double)(nextLevelXP-levelBaseXP));
 
         progressBar.setProgress((int)(levelProgress*100));
 
