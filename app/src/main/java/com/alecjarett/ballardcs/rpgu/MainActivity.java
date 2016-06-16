@@ -208,125 +208,30 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
 
-            String label = "";
-            String description = "";
-            int xp = 0;
+            String label;
+            String description;
+            int xp;
             String categoryLabel = skill.getSkillLabel();
-            int randomNumberZeroToOneHundred;
-            switch (skill.getSkillLabel().toLowerCase()) {
-                case "balance":
-                    randomNumberZeroToOneHundred = (int)(100*Math.random());
-                    if(randomNumberZeroToOneHundred<20){
-                        label = "Single Leg Deadlift";
-                        description = "Do 6 single leg deadlifts";
-                    }else if(randomNumberZeroToOneHundred>19 && randomNumberZeroToOneHundred<40){
-                        label = "Stand on a Foot";
-                        description = "Stand on one foot for 30 seconds";
-                    }else if(randomNumberZeroToOneHundred>39 && randomNumberZeroToOneHundred<60){
-                        label = "Walk Heel-to-Toe";
-                        description = "Walk for 30 seconds heel-to-toe";
-                    }else if(randomNumberZeroToOneHundred>59 && randomNumberZeroToOneHundred<80){
-                        label = "Squats";
-                        description = "Do 15 squats";
-                    }else {
-                        label = "Stand on a Foot, Blind";
-                        description = "Stand on one foot for 15 seconds with eyes closed";
-                    }
-                    break;
-                case "cooking":
-                    randomNumberZeroToOneHundred = (int)(100*Math.random());
-                    if(randomNumberZeroToOneHundred<20){
-                        label = "Baking";
-                        description = "Bake a cake";
-                    }else if(randomNumberZeroToOneHundred>19 && randomNumberZeroToOneHundred<40){
-                        label = "Frying";
-                        description = "Fry an egg";
-                    }else if(randomNumberZeroToOneHundred>39 && randomNumberZeroToOneHundred<60){
-                        label = "Grilling";
-                        description = "Cook something on a grill";
-                    }else if(randomNumberZeroToOneHundred>59 && randomNumberZeroToOneHundred<80){
-                        label = "Protein";
-                        description = "Make a protein-filled meal (Meat, nuts, etc.)";
-                    }else {
-                        label = "Baking";
-                        description = "Bake a pie";
-                    }
-                    break;
-                case "endurance":
-                    randomNumberZeroToOneHundred = (int)(100*Math.random());
-                    if(randomNumberZeroToOneHundred<20){
-                        label = "Running";
-                        description = "Run a mile";
-                    }else if(randomNumberZeroToOneHundred>19 && randomNumberZeroToOneHundred<40){
-                        label = "Walking";
-                        description = "Walk two miles";
-                    }else if(randomNumberZeroToOneHundred>39 && randomNumberZeroToOneHundred<60){
-                        label = "Jogging";
-                        description = "Jog a mile";
-                    }else if(randomNumberZeroToOneHundred>59 && randomNumberZeroToOneHundred<80){
-                        label = "Biking";
-                        description = "Go biking for 30 minutes";
-                    }else {
-                        label = "Running";
-                        description = "Run 2 miles";
-                    }
 
-                    break;
-                case "flexibility":
-                    randomNumberZeroToOneHundred = (int)(100*Math.random());
-                    if(randomNumberZeroToOneHundred<20){
-                        label = "Stretching";
-                        description = "Do a standing forward bend";
-                    }else if(randomNumberZeroToOneHundred>19 && randomNumberZeroToOneHundred<40){
-                        label = "Stretching";
-                        description = "Do an ankle stretch";
-                    }else if(randomNumberZeroToOneHundred>39 && randomNumberZeroToOneHundred<60){
-                        label = "Stretching";
-                        description = "Stretch your left leg out";
-                    }else if(randomNumberZeroToOneHundred>59 && randomNumberZeroToOneHundred<80){
-                        label = "Stretching";
-                        description = "Stretch your right leg out";
-                    }else {
-                        label = "Yoga";
-                        description = "Do 15 minutes of yoga";
-                    }
-                    break;
-                case "strength":
-                    randomNumberZeroToOneHundred = (int)(100*Math.random());
-                    if(randomNumberZeroToOneHundred<20){
-                        label = "Lifting";
-                        description = "Lift 10 lbs. until failure";
-                    }else if(randomNumberZeroToOneHundred>19 && randomNumberZeroToOneHundred<40){
-                        label = "Upper Body";
-                        description = "Do 10 push-ups";
-                    }else if(randomNumberZeroToOneHundred>39 && randomNumberZeroToOneHundred<60){
-                        label = "Abs";
-                        description = "Do 10 sit-ups";
-                    }else if(randomNumberZeroToOneHundred>59 && randomNumberZeroToOneHundred<80){
-                        label = "Arms";
-                        description = "Do 10 pull-ups";
-                    }else {
-                        label = "Lower Body";
-                        description = "Do 10 forward lunges";
-                    }
-                    break;
+            RPGuActivity activity;
+            switch (skill.getSkillLabel().toLowerCase()) {
                 case "wisdom":
                     label = "Reading";
                     if(quantity == 1) {
-                        randomNumberZeroToOneHundred = (int) (100 * Math.random());
-                        if (randomNumberZeroToOneHundred < 33) {
-                            description = "Read a world news article";
-                        } else if (randomNumberZeroToOneHundred > 34 && randomNumberZeroToOneHundred < 66) {
-                            description = "Read a news article";
-                        } else {
-                            description = "Read an article";
-                        }
+                        activity = loadRandomActivity(skill.getSkillLabel().toLowerCase());
+                        label = activity.getLabel();
+                        description = activity.getDescription();
                     }else if(quantity < 6){
                         description = "Read a 100+ page book";
                     }else {
                         description = "Read a 200+ page book";
                     }
                         quantity = 1;
+                    break;
+                default:
+                    activity = loadRandomActivity(skill.getSkillLabel().toLowerCase());
+                    label = activity.getLabel();
+                    description = activity.getDescription();
                     break;
             }
             xp = (int)(110 * Math.pow((quantity), 2));
@@ -337,15 +242,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private RPGuActivity loadRandomActivity(String skill) {
-        RPGuActivity activity;
-
+        String file = "";
         BufferedReader reader = null;
         try {
+            String[] l = getAssets().list(".");
             reader = new BufferedReader(
-                    new InputStreamReader(getAssets().open("")));
+                    new InputStreamReader(getAssets().open(skill+"_activities.txt")));
 
             String line;
-            String file = "";
             while((line = reader.readLine()) != null){
                 file += line;
             }
@@ -361,9 +265,21 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        String label = "";
-        String desc = "";
+        String[] activitiesString = file.split("-");
+        String label;
+        String desc;
 
+        int activityNum = (int)Math.floor(Math.random()*activitiesString.length);
+        String activityString = activitiesString[activityNum];
+        try {
+            label = activityString.substring(activityString.indexOf("label:")+"label:".length(),
+                    activityString.indexOf("desc:"));
+            label = label.replace("\n","").trim();
+
+            desc = activityString.substring(activityString.indexOf("desc:")+"desc:".length());
+        } catch (Exception e) {
+            return null;
+        }
         return new RPGuActivity(0,0,label,desc,0,skill,null,"");
     }
 
