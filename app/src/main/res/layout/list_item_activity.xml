@@ -106,7 +106,6 @@
             android:paddingLeft="20dp"
             android:layout_weight="1"
             style="?android:attr/progressBarStyleHorizontal"
-            android:progress="10"
             android:visibility="gone"/>
     </LinearLayout>
 </LinearLayout>

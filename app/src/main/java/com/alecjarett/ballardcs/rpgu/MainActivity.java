@@ -1,6 +1,5 @@
 package com.alecjarett.ballardcs.rpgu;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -322,12 +321,7 @@ public class MainActivity extends AppCompatActivity {
         //TODO: generate achievements
 
 
-        achievements.add(new RPGuAchievement(15, 0, "Balance", "Stand on one foot for 30 seconds", 100000, "balance"));
-        achievements.add(new RPGuAchievement(20, 0, "Cooking", "Cook a main dish", 200000, "cooking"));
-        achievements.add(new RPGuAchievement(15, 0, "Running", "Run a mile", 300000, "endurance"));
-        achievements.add(new RPGuAchievement(20, 0, "Yoga", "Do 5 leg stretches for each leg", 50000, "flexibility"));
-        achievements.add(new RPGuAchievement(30, 0, "Strength", "Do 10 push-ups", 150000, "strength"));
-        achievements.add(new RPGuAchievement(15, 0, "Reading", "Run an online article", 250000, "wisdom"));
+        achievements.add(new RPGuAchievement(15, 0, "Incomplete Feature", "Incomplete Feature", 100000, "balance"));
 
         return achievements;
     }
