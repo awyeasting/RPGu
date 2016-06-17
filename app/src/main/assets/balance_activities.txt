@@ -1,17 +1,15 @@
 label: Single Leg Deadlift
 desc: Do 6 single leg deadlifts
--
+;
 label: Stand on a Foot
 desc: Stand on one foot for 30 seconds
--
+;
 label: Walk Heel-to-Toe
 desc: Walk for 30 seconds heel-to-toe
--
+;
 label: Squats
 desc: Do 15 squats
--
+;
 label: Stand on a Foot, Blind
 desc: Stand on one foot for 15 seconds with eyes closed
--
-
-                    
+;

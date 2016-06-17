@@ -241,6 +241,11 @@ public class MainActivity extends AppCompatActivity {
         return activities;
     }
 
+    /**
+     * Generates a label and description for a random activity
+     * @param skill The string name of the skill that decides the text file to load an activity from
+     * @return An RPGuActivity with only label, desc, and category label
+     */
     private RPGuActivity loadRandomActivity(String skill) {
         String file = "";
         BufferedReader reader = null;
@@ -265,21 +270,19 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        String[] activitiesString = file.split("-");
+        String[] activitiesString = file.split(";");
         String label;
         String desc;
 
         int activityNum = (int)Math.floor(Math.random()*activitiesString.length);
         String activityString = activitiesString[activityNum];
-        try {
-            label = activityString.substring(activityString.indexOf("label:")+"label:".length(),
-                    activityString.indexOf("desc:"));
-            label = label.replace("\n","").trim();
 
-            desc = activityString.substring(activityString.indexOf("desc:")+"desc:".length());
-        } catch (Exception e) {
-            return null;
-        }
+        label = activityString.substring(activityString.indexOf("label:")+"label:".length(),
+                    activityString.indexOf("desc:"));
+        label = label.replace("\n","").trim();
+
+        desc = activityString.substring(activityString.indexOf("desc:")+"desc:".length());
+
         return new RPGuActivity(0,0,label,desc,0,skill,null,"");
     }
 

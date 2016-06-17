@@ -1,15 +1,15 @@
 label: Stretching
 desc: Do a standing forward bend
--
+;
 label: Stretching
 desc: Do an ankle stretch
--
+;
 label: Stretching
 desc: Stretch your left leg out
--
+;
 label: Stretching
 desc: Stretch your right leg out
--
+;
 label: Yoga
 desc: Do 15 minutes of yoga
--
+;

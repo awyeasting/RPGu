@@ -1,15 +1,15 @@
 label: Running
 desc: Run a mile
--
+;
 label: Walking
 desc: Walk two miles
--
+;
 label: Jogging
 desc: Jog a mile
--
+;
 label: Biking
 desc: Go biking for 30 minutes
--
+;
 label: Running
 desc: Run 2 miles
--
+;
